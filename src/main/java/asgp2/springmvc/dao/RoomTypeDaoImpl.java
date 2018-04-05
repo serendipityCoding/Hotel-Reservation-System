@@ -46,6 +46,22 @@ public class RoomTypeDaoImpl implements RoomTypeDao{
 		return roomType.get(0);
 	}
 	
+	public int getAvailRoomCount(Criteria criteria, int roomType){
+		String sql="SELECT COUNT(*) AS t "
+                +  "FROM Rooms, (SELECT Locations.id FROM Locations WHERE location='"+criteria.getLocation()+"') loc "
+                +  "WHERE Rooms.location= loc.id AND Rooms.roomType='"+roomType+"'"
+                +         "AND Rooms.id NOT IN( "
+                +                                "SELECT Rooms.id "
+                +                                "FROM Rooms JOIN Bookings "
+                +                                "ON Rooms.id=Bookings.roomID "
+                +                                "WHERE '"+criteria.getStartDate()+ "'<=Bookings.fromDate AND '"+criteria.getEndDate()+ "' >=Bookings.toDate "
+                +                                   "OR '"+criteria.getStartDate()+ "'<Bookings.fromDate AND '"+criteria.getEndDate()+ "' >=Bookings.toDate "
+                +                                   "OR '"+criteria.getStartDate()+ "'<=Bookings.fromDate AND '"+criteria.getEndDate()+ "' >Bookings.toDate)";
+
+		int count=jdbcTemplate.queryForObject(sql, Integer.class);
+		return count;
+	}
+	
 }
 
 class RoomTypeMapper implements RowMapper<RoomType> {

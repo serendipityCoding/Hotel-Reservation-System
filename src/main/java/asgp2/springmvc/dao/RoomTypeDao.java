@@ -9,4 +9,6 @@ public interface RoomTypeDao {
 	List<RoomType> searchRoom(Criteria criteria);
 
 	RoomType getRoomDetail(int roomTypeID);
+	
+	int getAvailRoomCount(Criteria criteria, int roomType);
 }

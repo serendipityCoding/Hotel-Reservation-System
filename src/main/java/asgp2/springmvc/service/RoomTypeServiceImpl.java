@@ -22,5 +22,9 @@ public class RoomTypeServiceImpl implements RoomTypeService{
 	public RoomType getRoomDetail(int roomTypeID) {
 		return roomTypeDao.getRoomDetail(roomTypeID);
 	}
+	
+	public int getAvailRoomCount(Criteria criteria, int roomType){
+		return roomTypeDao.getAvailRoomCount(criteria, roomType);
+	}
 
 }

@@ -2,6 +2,7 @@ package asgp2.springmvc.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import asgp2.springmvc.model.Criteria;
+import asgp2.springmvc.model.Order;
 import asgp2.springmvc.model.RoomType;
 import asgp2.springmvc.service.RoomTypeService;
 
@@ -23,7 +26,15 @@ public class RoomDetailController {
 		ModelAndView mav=new ModelAndView("detail");
 		int roomTypeID=Integer.parseInt(request.getParameter("typeID"));
 		RoomType roomType=roomTypeService.getRoomDetail(roomTypeID);
+		HttpSession session=request.getSession();
+		Criteria criteria=(Criteria) session.getAttribute("criteria");
+		int maxAvailRoom=roomTypeService.getAvailRoomCount(criteria,roomTypeID);
 		mav.addObject("roomDetail",roomType);
+		mav.addObject("maxAvailRoom",maxAvailRoom);
+		mav.addObject("order",new Order());
+		mav.addObject("startDate",criteria.getStartDate());
+		mav.addObject("endDate",criteria.getEndDate());
+		mav.addObject("location",criteria.getLocation());
 		return mav;
 	}
 }

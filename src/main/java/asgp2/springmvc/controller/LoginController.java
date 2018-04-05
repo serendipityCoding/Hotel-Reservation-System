@@ -38,7 +38,7 @@ public class LoginController {
 		User user = userService.validateUser(login);
 
 		if (null != user) {
-			HttpSession session=request.getSession();
+			HttpSession session=request.getSession(true);
 			session.setAttribute("user", user);			
 			userService.updateLastAccessDate(user.getId(),DateUtil.getCurrentDate());
 			mav = new ModelAndView("welcome");
