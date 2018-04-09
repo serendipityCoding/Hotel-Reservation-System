@@ -10,5 +10,7 @@
 	<a href="login">Login</a>
 	<a href="register">Register</a>
 	<a href="search">Search</a>
+	<a href="cart">Cart</a>
+	<a href="record">Record</a>
 </body>
 </html>

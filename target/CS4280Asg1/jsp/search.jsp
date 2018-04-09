@@ -22,9 +22,11 @@
 	$(function() {
 		$("#startDate").datepicker({
 			minDate : new Date(),
+			dateFormat: "yy-mm-dd"
 		});
 		$("#endDate").datepicker({
 			maxDate : new Date().setDate(new Date().getDate() + 90),
+			dateFormat: "yy-mm-dd",
 			useCurrent : false,
 		});
 		$('#startDate').on('dp.change', function(e) {

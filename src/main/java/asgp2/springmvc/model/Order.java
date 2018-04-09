@@ -1,12 +1,22 @@
 package asgp2.springmvc.model;
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String fromDate;
 	private String toDate;
 	private String location;
 	private String roomType;
 	private int roomCount;
 	private double price;
+	
+	public Order(){
+		
+	}
 	
 	public void setFromDate(String fromDate){
 		this.fromDate=fromDate;

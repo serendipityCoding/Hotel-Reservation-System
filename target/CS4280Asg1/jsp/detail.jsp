@@ -2,12 +2,47 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page session="true" %>
+<%@ page session="true"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" language="javascript"
+	src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.js"></script>
+<script type="text/javascript"
+	src="http://www.technicalkeeda.com/js/javascripts/plugin/json2.js"></script>
 <title>Detail</title>
+<script type="text/javascript">
+function addToCart() {
+		var order={
+				"fromDate":$("#fromDate").val(),
+				"toDate":$("#toDate").val(),
+				"location": $("#location").val(),
+				"roomType":$("#type").val(),
+				"roomCount":parseInt($("#roomCount").val()),
+				"price":parseFloat($("#price").val())
+		}
+		$.ajax({
+			type : $("#booking").attr( "method"),
+			contentType: "application/json",
+			dataType : 'JSON',
+			url : $("#booking").attr( "action"),
+			data :JSON.stringify(order),
+			cache : false,
+			success : function(response) {
+				alert(JSON.parse(response).message);
+				var url = "<%=request.getContextPath()%>/search";
+				window.location.replace(url);
+			},
+			error : function(xhr, textStatus, errorThrown) {
+				alert(JSON.stringify(order));
+				console.log(xhr.statusText);
+				console.log(textStatus);
+
+			}
+		});
+	}
+</script>
 </head>
 <body>
 	<p>${roomDetail.type}</p>
@@ -22,15 +57,20 @@
 	<p>${roomDetail.hasParkingLot}</p>
 	<p>${roomDetail.description}</p>
 	<p>${maxAvailRoom}</p>
-	<form:form id="booking" modelAttribute="order" action="booking" method="POST">
-		<form:input type="hidden" path="price" name="price" id="price" value="${roomDetail.price}"/>
-		<form:input type="hidden" path="roomType" name="roomType" id="roomType" value="${roomDetail.type}"/>
-		<form:select path="roomCount" name="roomCount" id="roomCount" required="required">
-			<c:forEach var="i" begin="1" end="${maxAvailRoom}">
-				<form:option value="${i}">${i}</form:option>
+	<p>${startDate}</p>
+	<p>${endDate}</p>
+	<p>${location}</p>
+	<form id="booking" action="booking" method="POST">
+		<input type="hidden" value="${roomDetail.type}" id="type" /> 
+		<input type="hidden" value="${roomDetail.price}" id="price" /> <input
+			type="hidden" value="${startDate}" id="fromDate" /> <input
+			type="hidden" value="${endDate}" id="toDate" /> <input type="hidden"
+			value="${location}" id="location" /> <select path="roomCount"
+			name="roomCount" id="roomCount" required="required">
+			<c:forEach var="i" begin="1" end="7">
+				<option value="${i}">${i}</option>
 			</c:forEach>
-		</form:select> 
-		<input type="submit" value="Add to Cart" />
-	</form:form>
+		</select> <input type="button" value="Add to Cart" onclick='addToCart()' />
+	</form>
 </body>
 </html>

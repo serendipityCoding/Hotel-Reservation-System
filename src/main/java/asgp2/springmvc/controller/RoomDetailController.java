@@ -1,5 +1,8 @@
 package asgp2.springmvc.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,11 +25,12 @@ public class RoomDetailController {
 	RoomTypeService roomTypeService;
 	
 	@RequestMapping(value="/roomDetail", method=RequestMethod.GET)
-	public ModelAndView showRoomDetail(HttpServletRequest request, HttpServletResponse reponse){
+	public ModelAndView showRoomDetail(HttpServletRequest request, HttpServletResponse response){
 		ModelAndView mav=new ModelAndView("detail");
 		int roomTypeID=Integer.parseInt(request.getParameter("typeID"));
 		RoomType roomType=roomTypeService.getRoomDetail(roomTypeID);
 		HttpSession session=request.getSession();
+		
 		Criteria criteria=(Criteria) session.getAttribute("criteria");
 		int maxAvailRoom=roomTypeService.getAvailRoomCount(criteria,roomTypeID);
 		mav.addObject("roomDetail",roomType);
