@@ -21,4 +21,14 @@ public class BookingServiceImpl implements BookingService{
 	public List<Booking> getBookingHistory(int userID) {
 		return bookingDao.getBookingHistory(userID);
 	}
+	
+	@Override 
+	public List<Booking> getFutureBooking(int userID){
+		return bookingDao.getFutureBooking(userID);
+	}
+	
+	@Override
+	public int cancelBooking(int bookingID){
+		return bookingDao.cancelBooking(bookingID);
+	}
 }

@@ -1,6 +1,8 @@
 package asgp2.springmvc.dao;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -57,9 +59,44 @@ public class BookingDaoImpl implements BookingDao {
 
 	@Override
 	public List<Booking> getBookingHistory(int userID) {
-		String sql="SELECT * FROM Bookings WHERE userID = '"+userID+"' ORDER BY fromDate desc";
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDate = LocalDate.now();
+		String sql="SELECT * FROM Bookings WHERE userID = '"+userID+"' and fromDate <='"+dtf.format(localDate)+"'ORDER BY fromDate desc";
 		List<Booking> bookings=jdbcTemplate.query(sql, new BookingMapper());
 		return bookings;
+	}
+	
+	@Override 
+	public List<Booking> getFutureBooking(int userID){
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDate = LocalDate.now();
+		String sql="SELECT * FROM Bookings WHERE userID = '"+userID+"' and fromDate >'"+dtf.format(localDate)+"'ORDER BY fromDate desc";
+		List<Booking> bookings=jdbcTemplate.query(sql, new BookingMapper());
+		return bookings;
+	}
+	
+	@Override
+	public int cancelBooking(int bookingID){
+		String sql = "update Bookings set isCancel=1 where id=?";
+		try(Connection connection = (Connection) datasource.getConnection();
+			PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+			statement.setInt(1,bookingID);
+			int affectedRows = statement.executeUpdate();
+			if (affectedRows == 0) {
+	            throw new SQLException("Update booking failed, no rows affected.");
+	        }
+			ResultSet generatedKeys = statement.getGeneratedKeys();
+			if (generatedKeys.next()) {
+                return (int)generatedKeys.getLong(1);
+            }
+            else {
+                throw new SQLException("Creating user failed, no ID obtained.");
+            }
+		} 
+		catch(SQLException e){
+			
+		}
+		return -1;
 	}
 }
 class BookingMapper implements RowMapper<Booking> {

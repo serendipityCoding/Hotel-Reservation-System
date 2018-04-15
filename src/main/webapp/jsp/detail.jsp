@@ -67,7 +67,7 @@ function addToCart() {
 			type="hidden" value="${endDate}" id="toDate" /> <input type="hidden"
 			value="${location}" id="location" /> <select path="roomCount"
 			name="roomCount" id="roomCount" required="required">
-			<c:forEach var="i" begin="1" end="7">
+			<c:forEach var="i" begin="1" end="${maxAvailRoom}">
 				<option value="${i}">${i}</option>
 			</c:forEach>
 		</select> <input type="button" value="Add to Cart" onclick='addToCart()' />

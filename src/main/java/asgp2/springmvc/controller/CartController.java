@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.json.JSONObject;
 
 import asgp2.springmvc.model.User;
 import asgp2.springmvc.model.Order;
@@ -46,10 +47,19 @@ public class CartController {
 		logger.info(userID);
 		for(Order order: orders){
 			logger.info(order.getPrice());
-			int roomID=roomService.assignRoom(order);
-			logger.info(roomID);
-			int bookingID=bookingService.createBooking(roomID, userID, order);
-			logger.info(bookingID);
+			for(int i=0;i<order.getRoomCount();i++){
+				int roomID=roomService.assignRoom(order);
+				logger.info(roomID);
+				int bookingID=bookingService.createBooking(roomID, userID, order);
+				logger.info(bookingID);
+			}
 		}
+	}
+	@RequestMapping(value="/cancelBooking",method=RequestMethod.POST,headers="Content-Type=application/json")
+	@ResponseBody
+	public void cancelBooking(HttpServletRequest request, HttpServletResponse response,@RequestBody String data){
+		JSONObject jsonObj = new JSONObject(data);
+		int oldBookingID=jsonObj.getInt("bookingID");
+		int bookingID=bookingService.cancelBooking(oldBookingID);
 	}
 }

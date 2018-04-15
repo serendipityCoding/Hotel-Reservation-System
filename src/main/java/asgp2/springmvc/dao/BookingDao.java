@@ -8,4 +8,6 @@ import asgp2.springmvc.model.Order;
 public interface BookingDao {
 	int createBooking(int roomID, int userID, Order order);
 	List<Booking> getBookingHistory(int userID);
+	List<Booking> getFutureBooking(int userID);
+	int cancelBooking(int bookingID);
 }

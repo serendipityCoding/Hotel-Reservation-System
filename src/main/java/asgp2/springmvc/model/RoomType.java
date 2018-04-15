@@ -1,6 +1,13 @@
 package asgp2.springmvc.model;
 
-public class RoomType {
+import java.io.Serializable;
+
+public class RoomType implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String type;
 	private float size;

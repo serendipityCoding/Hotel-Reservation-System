@@ -29,8 +29,7 @@ public class RoomDetailController {
 		ModelAndView mav=new ModelAndView("detail");
 		int roomTypeID=Integer.parseInt(request.getParameter("typeID"));
 		RoomType roomType=roomTypeService.getRoomDetail(roomTypeID);
-		HttpSession session=request.getSession();
-		
+		HttpSession session=request.getSession();	
 		Criteria criteria=(Criteria) session.getAttribute("criteria");
 		int maxAvailRoom=roomTypeService.getAvailRoomCount(criteria,roomTypeID);
 		mav.addObject("roomDetail",roomType);
