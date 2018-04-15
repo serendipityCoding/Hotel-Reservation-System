@@ -11,6 +11,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<import resource="classpath:asgp2/config/user-beans.xml" />
+	<import resource="classpath:asgp2/config/staff-beans.xml" />
 	<import resource="classpath:asgp2/config/roomType-beans.xml" />
 	<import resource="classpath:asgp2/config/booking-beans.xml" />
 	<import resource="classpath:asgp2/config/room-beans.xml" />
