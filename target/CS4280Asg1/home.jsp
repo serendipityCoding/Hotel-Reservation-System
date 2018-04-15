@@ -8,6 +8,7 @@
 </head>
 <body>
 	<a href="staffLogin">Staff Login</a>
+	<a href="staffList">Staff List</a>
 	<a href="login">Login</a>
 	<a href="register">Register</a>
 	<a href="search">Search</a>

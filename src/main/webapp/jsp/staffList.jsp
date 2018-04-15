@@ -16,9 +16,51 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<link
+	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
+	rel="stylesheet">
+<script
+	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <title>Staff List</title>
+<script>
+$(function() {
+	if($('#toggle-event').attr("data-value")==1){
+		console.log("ssss");
+    	$('#toggle-event').bootstrapToggle("on");
+	}
+	else{
+		console.log("tttt");
+		$('#toggle-event').bootstrapToggle("off");
+	}
+  });
+$(function (){
+	$("#toggle-event").change(function(){
+		var active=0;
+		var id=$(this).val();
+		if($(this).prop('checked')==true){
+			active=1;
+		}
+		var json={
+				id:$(this).val(),
+				active:active
+		}
+		$.ajax({
+			type:"POST",
+			url:"changeStatus",
+			contentType:"application/json",
+			data: JSON.stringify(json),
+			success:function(data){
+				$("#"+id).html("<p>Status Changed</p>");
+			},
+			error:function(xhr, textStatus, errorThrown) {
+				console.log(xhr.statusText);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		})
+	})
+})
+</script>
 </head>
 <body>
 	<table class="table">
@@ -30,18 +72,24 @@
 				<th scope="col">Last Access Time</th>
 				<th scope="col">Created By</th>
 				<th scope="col">Active Status</th>
-				<th scope="col">Toggle Status</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${staffList}" var="item">
-				<th scope="row">${item.id}</th>
-				<td>${item.name}</td>
-				<td>${item.email}</td>
-				<td>${item.lastAccessDate}</td>
-				<td>${item.createByName}</td>
-				<td>${item.isActive}</td>
-				<td><input type="checkbox" checked data-toggle="toggle"></td>
+				<tr class="staff">
+					<th scope="row">${item.id}</th>
+					<td>${item.name}</td>
+					<td>${item.email}</td>
+					<td>${item.lastAccessDate}</td>
+					<td>${item.createByName}</td>
+					<td><input id="toggle-event" value="${item.id}" data-value="${item.isActive}"
+						type="checkbox"  data-toggle="toggle" data-size="small"
+						data-on="Active" data-off="Inactive"></td>
+				</tr>
+				<tr>
+					<div id="${item.id}">
+					</div>
+				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
