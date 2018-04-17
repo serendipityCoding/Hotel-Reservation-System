@@ -8,6 +8,7 @@ public class Staff implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
+	private String employeeId;
 	private String name;
 	private String username;
 	private String email;
@@ -18,6 +19,7 @@ public class Staff implements Serializable{
 	private int isActive;
 	private int createById;
 	private String createByName;
+	private String invitationToken;
 	
 	public int getId(){
 		return this.id;
@@ -25,6 +27,14 @@ public class Staff implements Serializable{
 	
 	public void setId(int id){
 		this.id=id;
+	}
+	
+	public String getEmployeeId(){
+		return this.employeeId;
+	}
+	
+	public void setEmployeeId(String employeeId){
+		this.employeeId=employeeId;
 	}
 	
 	public String getName(){
@@ -105,5 +115,13 @@ public class Staff implements Serializable{
 	
 	public void setCreateByName(String createByName){
 		this.createByName=createByName;
+	}
+	
+	public void setInvitationToken(String invitationToken){
+		this.invitationToken=invitationToken;
+	}
+	
+	public String getInvitationToken(){
+		return this.invitationToken;
 	}
 }

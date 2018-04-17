@@ -14,6 +14,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="<c:url value="/resources/js/staffList.js"/>"></script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link
@@ -21,62 +22,84 @@
 	rel="stylesheet">
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-<title>Staff List</title>
-<script>
-$(function (){
-	$("#toggle-event").change(function(){
-		var json={
-				id:$(this).val(),
-				active:$(this).prop('checked')
-		}
-		$.ajax({
-			type:"POST",
-			url:"changeStatus",
-			contentType:"application/json",
-			dataJSON.stringify(json),
-			success:function(data){
-				$("#"+id).html("<p>Status Changed</p>");
-			},
-			error:function(xhr, textStatus, errorThrown) {
-				console.log(xhr.statusText);
-				console.log(textStatus);
-				console.log(errorThrown);
-			}
-		})
-	})
-})
-</script>
+<link href="<c:url value="/resources/css/staffList.css" />" rel="stylesheet">
+<title>GOGO Pikachu|Staff|Staff List</title>
 </head>
 <body>
-	<table class="table">
-		<thead>
-			<tr>
-				<th scope="col">#</th>
-				<th scope="col">Name</th>
-				<th scope="col">Email</th>
-				<th scope="col">Last Access Time</th>
-				<th scope="col">Created By</th>
-				<th scope="col">Active Status</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${staffList}" var="item">
-				<tr>
-					<th scope="row">${item.id}</th>
-					<td>${item.name}</td>
-					<td>${item.email}</td>
-					<td>${item.lastAccessDate}</td>
-					<td>${item.createByName}</td>
-					<td><input id="toggle-event" value="${item.id}"
-						type="checkbox" checked data-toggle="toggle" data-size="small"
-						data-on="Active" data-off="Inactive"></td>
-				</tr>
-				<tr>
-					<div id="${item.id}">
+	<div class="container">
+		<h2>Hotel Manager List</h2>
+		<button type="button" class="btn btn-default" data-toggle="modal"
+			data-target="#addManager" id="addButton">Add Manager</button>
+		<!-- Modal -->
+		<div class="modal fade" id="addManager" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Hotel Manager Registration</h4>
 					</div>
+					<div class="modal-body">
+						<form id="managerRegistration" action="addManager" method="POST">
+							<div class="form-group">
+								<label for="employeeID">Employee ID:</label> <input type="text"
+									class="form-control" id="employeeID" required>
+							</div>
+							<div class="form-group">
+								<label for="email">Email address:</label> <input type="email"
+									class="form-control" id="email" required>
+							</div>
+							<div class="form-group">
+								<label for="name">Name:</label> <input type="text"
+									class="form-control" id="name" required>
+							</div>
+							<button type="button" class="btn btn-default" onclick="addManager()">Submit</button>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Last Access Time</th>
+					<th scope="col">Created By</th>
+					<th scope="col">Active Status</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<c:forEach items="${staffList}" var="item">
+					<tr class="staff">
+						<th scope="row">${item.id}</th>
+						<td>${item.name}</td>
+						<td>${item.email}</td>
+						<td>${item.lastAccessDate}</td>
+						<td>${item.createByName}</td>
+						<td id="status"><input id="status${item.id}"
+							value="${item.id}" type="checkbox" data-toggle="toggle"
+							data-size="small" data-on="Active" data-off="Inactive"
+							class="toggle-event"> <script>
+							$(function() {								
+								if (${item.isActive} == 1) {								
+									$('#status'+${item.id}).bootstrapToggle('on');
+								} else {
+									$('#status'+${item.id}).bootstrapToggle('off')
+								}
+							});
+						</script></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+	</div>
 </body>
 </html>

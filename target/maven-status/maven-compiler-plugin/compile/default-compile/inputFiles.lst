@@ -1,5 +1,6 @@
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/util/DateUtil.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/service/RoomTypeServiceImpl.java
+/Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/util/EmailUtil.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/dao/StaffDaoImpl.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/controller/CartController.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/dao/UserDao.java
@@ -8,6 +9,7 @@
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/service/RoomService.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/dao/BookingDaoImpl.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/model/Response.java
+/Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/util/TokenUtil.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/dao/BookingDao.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/model/StaffLogin.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/service/StaffService.java
@@ -22,6 +24,7 @@
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/controller/RoomSearchController.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/dao/RoomTypeDaoImpl.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/dao/RoomDaoImpl.java
+/Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/controller/UserManagementController.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/model/Order.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/model/Login.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/service/UserService.java
@@ -30,6 +33,7 @@
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/dao/RoomTypeDao.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/controller/RoomDetailController.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/controller/LoginController.java
+/Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/controller/StaffRegistrationController.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/service/RoomServiceImpl.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/controller/RegistrationController.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/model/User.java

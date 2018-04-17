@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+
+#addButton {
+	float:right;
+	margin-bottom: 20px
+}
+
+table{
+	margin:20px;
+}

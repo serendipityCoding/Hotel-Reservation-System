@@ -41,4 +41,14 @@ public class StaffServiceImpl implements StaffService {
 	public List<Staff> getAllStaff() {
 		return staffDao.getAllStaff();
 	}
+	
+	@Override
+	public int inviteNewManager(Staff staff){
+		return staffDao.inviteNewManager(staff);
+	}
+	
+	@Override
+	public boolean invitationValidate(String employeeID, String invitationToken){
+		return staffDao.invitationValidate(employeeID, invitationToken);
+	}
 }

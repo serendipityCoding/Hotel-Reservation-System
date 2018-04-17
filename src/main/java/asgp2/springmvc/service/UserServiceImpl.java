@@ -1,5 +1,7 @@
 package asgp2.springmvc.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import asgp2.springmvc.dao.UserDao;
@@ -25,5 +27,9 @@ public class UserServiceImpl implements UserService {
 
 	public boolean emailDuplication(User user) {
 		return userDao.emailDuplication(user);
+	}
+	
+	public List<User> getAllUser(){
+		return userDao.getAllUser();
 	}
 }

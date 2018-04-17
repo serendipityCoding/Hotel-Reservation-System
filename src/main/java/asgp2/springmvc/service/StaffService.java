@@ -12,4 +12,6 @@ public interface StaffService {
 	Staff validateUser(StaffLogin staffLogin);
 	boolean emailDuplication(Staff staff);
 	List<Staff> getAllStaff();
+	int inviteNewManager(Staff staff);
+	boolean invitationValidate(String employeeID, String invitationToken);
 }

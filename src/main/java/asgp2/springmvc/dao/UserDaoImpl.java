@@ -21,19 +21,28 @@ public class UserDaoImpl implements UserDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
+	public List<User> getAllUser() {
+		String sql = "select * from user";
+
+		List<User> users = jdbcTemplate.query(sql, new UserMapper());
+
+		return users.size() > 0 ? users : null;
+	}
+
 	public void register(User user) {
 
 		String sql = "insert into user values(NULL,?,?,?,?,?,?,?,?,?)";
 
-		jdbcTemplate.update(sql, new Object[] { user.getUsername(), user.getPassword(), user.getEmail(), user.getFirstname(),
-				user.getLastname(), user.getPhone(), user.getAddress(), user.getCreateDate(), null });
+		jdbcTemplate.update(sql,
+				new Object[] { user.getUsername(), user.getPassword(), user.getEmail(), user.getFirstname(),
+						user.getLastname(), user.getPhone(), user.getAddress(), user.getCreateDate(), null });
 	}
 
-	public void updateLastAccessDate(int id, String lastAccessDate){
-		String sql="update user set lastAccessDate = '"+lastAccessDate+"' where id = '"+id+"'";
+	public void updateLastAccessDate(int id, String lastAccessDate) {
+		String sql = "update user set lastAccessDate = '" + lastAccessDate + "' where id = '" + id + "'";
 		jdbcTemplate.update(sql);
 	}
-	
+
 	public User validateUser(Login login) {
 
 		String sql = "select * from user where username='" + login.getUsername() + "' and password='"
@@ -43,12 +52,14 @@ public class UserDaoImpl implements UserDao {
 
 		return users.size() > 0 ? users.get(0) : null;
 	}
-	
-	public boolean emailDuplication(User user){
-		String sql= "select * from user where email='"+user.getEmail()+"'";
-		List<User> users=jdbcTemplate.query(sql, new UserMapper());
-		if(users.size()>0) return true;
-		else return false;
+
+	public boolean emailDuplication(User user) {
+		String sql = "select * from user where email='" + user.getEmail() + "'";
+		List<User> users = jdbcTemplate.query(sql, new UserMapper());
+		if (users.size() > 0)
+			return true;
+		else
+			return false;
 	}
 }
 
