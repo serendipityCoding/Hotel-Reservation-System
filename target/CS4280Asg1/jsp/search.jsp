@@ -15,37 +15,67 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="./resources/js/search.js"></script>
 <script>
-	$(function() {
-		$("#startDate").datepicker({
-			minDate : new Date(),
-			dateFormat: "yy-mm-dd"
-		});
-		$("#endDate").datepicker({
-			maxDate : new Date().setDate(new Date().getDate() + 90),
-			dateFormat: "yy-mm-dd",
-			useCurrent : false,
-		});
-		$('#startDate').on('dp.change', function(e) {
-			$('#endDate').data('DatePicker').minDate(e.date);
-			$('#endDate').data('DatePicker').maxDate(m);
-		});
-	});
+$(document).ready(function(){
+	var name = '<%= session.getAttribute("user") %>';
+	if(name==null){
+		$("#loginIcon").show();
+		$("#logoutIcon").hide();
+	}
+	else{
+		$("#signUpIcon").hide()
+		$("#loginIcon").hide();
+		$("#logoutIcon").show();
+	}
+})
 </script>
 </head>
 <body>
 	<div class="container">
-		<form:form id="roomSearch" cssClass="form-horizontal"
-			modelAttribute="criteria" action="searchProcess" method="post">
+		<div id="contentHeader">
+			<h2>GOGO Pikachu</h2>
+			<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#myNavbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li><a href="#">Our Hotels</a></li>
+						<li><a href="search">Find Rooms</a></li>
+						<li><a href="#">Offers</a></li>
+						<li><a href="#">Dining</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li id="signUpIcon" class="active"><a href="register"><span
+								class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+						<li id="personalIcon"><a href="record"><span
+								class="glyphicon glyphicon-user"></span> Personal</a></li>
+						<li id="loginIcon"><a data-toggle="modal"
+							data-target="#login"><span class="glyphicon glyphicon-log-in"></span>
+								Login </a></li>
+						<li id="logoutIcon"><a href="#"><span
+								class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+					</ul>
+				</div>
+			</div>
+			</nav>
+		</div>
+
+		<form id="roomSearch" class="form-inline">
 			<div class="form-group">
-				<form:label path="startDate" cssClass="control-label col-sm-2">Start Date:</form:label>
+				<label >Start Date:</label>
 				<div id="datepicker1" class="input-group date"
 					data-date-format="mm-dd-yyyy">
-					<form:input path="startDate" cssClass="form-control"
-						name="startDate" id="startDate" required="required" />
+					<input class="form-control"
+						name="startDate" id="startDate" required />
 					<span class="input-group-addon"> <span
 						class="glyphicon glyphicon-calendar"></span>
 					</span>
@@ -53,11 +83,11 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<form:label path="endDate" cssClass="control-label col-sm-2">End Date:</form:label>
+				<label>End Date:</label>
 				<div id="datepicker2" class="input-group date"
 					data-date-format="mm-dd-yyyy">
-					<form:input path="endDate" cssClass="form-control" name="endDate"
-						id="endDate" required="required" />
+					<input class="form-control" name="endDate"
+						id="endDate" required />
 					<span class="input-group-addon"> <span
 						class="glyphicon glyphicon-calendar"></span>
 					</span>
@@ -66,25 +96,26 @@
 
 
 			<div class="form-group">
-				<form:label path="location" cssClass="control-label col-sm-2">Location:</form:label>
-				<div class="col-sm-10">
-					<form:select path="location" cssClass="form-control" name="location"
-						id="location" required="required" >
-						<form:option value=""></form:option>
-						<form:option value="NewYork">New York</form:option>
-						<form:option value="Shanghai">Shanghai</form:option>
-						<form:option value="Tokyo">Tokyo</form:option>
-						<form:option value="London">London</form:option>
-						<form:option value="Hong Kong">Hong Kong</form:option>
-					</form:select>
+				<label>Location:</label>
+				<div >
+					<select class="form-control"
+						name="location" id="location" required>
+						<option value=""></option>
+						<option value="NewYork">New York</option>
+						<option value="Shanghai">Shanghai</option>
+						<option value="Tokyo">Tokyo</option>
+						<option value="London">London</option>
+						<option value="Hong Kong">Hong Kong</option>
+					</select>
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<form:button id="search" name="search" class="btn btn-default">Search</form:button>
+				<div >
+					<button id="search" name="search" onclick="searchRoom()" class="btn btn-default">Search</button>
 				</div>
 			</div>
-		</form:form>
+		</form>
+		<div id="searchRes">rrrrr</div>
 	</div>
 </body>
 </html>

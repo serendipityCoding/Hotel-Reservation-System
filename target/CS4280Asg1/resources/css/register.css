@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+*{
+	background-color:rgb (240,240,240)
+}
+#contentTitle{
+	margin: 40px
+}

@@ -24,7 +24,15 @@ public class StaffLoginController {
 	
 	@RequestMapping(value = "/staffLogin", method = RequestMethod.GET)
 	public ModelAndView showLogin(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("staffLogin");
+		ModelAndView mav=null;
+		if(request.getSession()!=null){
+			HttpSession session=request.getSession();
+			if(session.getAttribute("staff")!=null){
+				mav=new ModelAndView("welcomeStaff");
+				return mav;
+			}
+		}
+		mav = new ModelAndView("staffLogin");
 		mav.addObject("staffLogin", new StaffLogin());
 		return mav;
 	}
@@ -33,20 +41,16 @@ public class StaffLoginController {
 	public ModelAndView loginProcess(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("staffLogin") StaffLogin staffLogin) {
 		ModelAndView mav = null;
-
 		Staff staff = staffService.validateUser(staffLogin);
-
 		if (null != staff) {
 			HttpSession session=request.getSession(true);
 			session.setAttribute("staff", staff);			
 			staffService.updateLastAccessDate(staff.getId(),DateUtil.getCurrentDate());
-			mav = new ModelAndView("welcome");
-			mav.addObject("firstname", staff.getName());
+			mav = new ModelAndView("welcomeStaff");
 		} else {
 			mav = new ModelAndView("staffLogin");
 			mav.addObject("message", "Username or Password is wrong!!");
 		}
-
 		return mav;
 	}
 }

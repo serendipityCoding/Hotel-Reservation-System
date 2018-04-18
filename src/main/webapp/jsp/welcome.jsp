@@ -7,17 +7,30 @@
 <title>Welcome</title>
 </head>
 <body>
-	<table>
-		<tr>
-			<td>Welcome ${firstname}</td>
-		</tr>
-		<tr>
-		</tr>
-		<tr>
-		</tr>
-		<tr>
-			<td><a href="home.jsp">Home</a></td>
-		</tr>
-	</table>
+	<div class="container">
+		<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Our Hotels</a></li>
+					<li><a href="#">Offers</a></li>
+					<li><a href="#">Dining</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li></li>
+					<li><a href="staffLogin"><span
+							class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+				</ul>
+			</div>
+		</div>
+		</nav>
+	</div>
 </body>
 </html>

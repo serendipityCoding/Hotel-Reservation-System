@@ -44,10 +44,10 @@ public class LoginController {
 			mav = new ModelAndView("welcome");
 			mav.addObject("firstname", user.getFirstname());
 		} else {
-			mav = new ModelAndView("login");
+			mav = new ModelAndView("welcome");
 			mav.addObject("message", "Username or Password is wrong!!");
 		}
-
+		
 		return mav;
 	}
 

@@ -17,17 +17,45 @@
 </head>
 <body>
 	<div class="container">
-		<form:form id="loginForm" cssClass="form-horizontal" modelAttribute="login" action="loginProcess" method="post">
+		<h2>GOGO Pikachu</h2>
+		<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="#">Our Hotels</a></li>
+					<li><a href="#">Offers</a></li>
+					<li><a href="#">Dining</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="active"><a href="register"><span
+							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="login"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				</ul>
+			</div>
+		</div>
+		</nav>
+		<form:form id="loginForm" cssClass="form-horizontal"
+			modelAttribute="login" action="loginProcess" method="post">
 			<div class="form-group">
 				<form:label path="username" cssClass="control-label col-sm-2">Username: </form:label>
 				<div class="col-sm-10">
-					<form:input path="username" cssClass="form-control" name="username" id="username" required="required"/>
+					<form:input path="username" cssClass="form-control" name="username"
+						id="username" required="required" />
 				</div>
 			</div>
 			<div class="form-group">
 				<form:label path="password" cssClass="control-label col-sm-2">Password:</form:label>
 				<div class="col-sm-10">
-					<form:password path="password" cssClass="form-control" name="password" id="password" required="required"/>
+					<form:password path="password" cssClass="form-control"
+						name="password" id="password" required="required" />
 				</div>
 			</div>
 			<div class="form-group">

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import asgp2.springmvc.model.User;
+import asgp2.springmvc.model.Login;
 import asgp2.springmvc.service.UserService;
 import asgp2.springmvc.util.DateUtil;
 
@@ -23,7 +24,7 @@ public class RegistrationController {
 	public ModelAndView showRegister(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("register");
 		mav.addObject("user", new User());
-
+		mav.addObject("login",new Login());
 		return mav;
 	}
 

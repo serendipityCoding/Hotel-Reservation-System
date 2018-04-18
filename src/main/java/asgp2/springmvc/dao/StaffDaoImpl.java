@@ -43,12 +43,10 @@ public class StaffDaoImpl implements StaffDao {
 
 	public void register(Staff staff) {
 
-		String sql = "insert into Staff values(NULL,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "update Staff set `username`=?, `password`=? where employeeId=?";
 
 		jdbcTemplate.update(sql,
-				new Object[] { staff.getName(), staff.getUsername(), staff.getPassword(), staff.getEmail(),
-						staff.getRole(), staff.getCreateDate(), null, staff.getIsActive(), staff.getCreateById(),
-						staff.getCreateByName() });
+				new Object[] { staff.getUsername(), staff.getPassword(), staff.getEmployeeId()});
 	}
 
 	public void updateLastAccessDate(int id, String lastAccessDate) {

@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import asgp2.springmvc.model.Response;
+import asgp2.springmvc.model.User;
 import asgp2.springmvc.model.Staff;
 import asgp2.springmvc.model.StaffLogin;
 import asgp2.springmvc.service.StaffService;
+import asgp2.springmvc.service.UserService;
 import asgp2.springmvc.util.DateUtil;
 import asgp2.springmvc.util.EmailUtil;
 import asgp2.springmvc.util.TokenUtil;
@@ -31,8 +33,9 @@ public class StaffManagementController {
 	@Autowired
 	StaffService staffService;
 	
+
 	@RequestMapping(value = "/staffList", method = RequestMethod.GET)
-	public ModelAndView showLogin(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView getStaffList(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("staffList");
 		List<Staff> staffRes=staffService.getAllStaff();
 		mav.addObject("staffList", staffRes);

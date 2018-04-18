@@ -22,7 +22,7 @@ public class UserManagementController {
 	
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)
 	public ModelAndView showLogin(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("staffList");
+		ModelAndView mav = new ModelAndView("userList");
 		List<User> users=userService.getAllUser();
 		mav.addObject("userList", users);
 		return mav;
