@@ -1,17 +1,16 @@
-$(function() {
+$(document).ready(function() {
 	$("#startDate").datepicker({
 		minDate : new Date(),
+		maxDate : new Date(new Date().setDate(new Date().getDate() + 89)),
 		dateFormat : "yy-mm-dd"
 	});
 	$("#endDate").datepicker({
-		maxDate : new Date().setDate(new Date().getDate() + 90),
+		minDate : new Date(),
+		maxDate : new Date(new Date().setDate(new Date().getDate() + 90)),
 		dateFormat : "yy-mm-dd",
 		useCurrent : false,
 	});
-	$('#startDate').on('dp.change', function(e) {
-		$('#endDate').data('DatePicker').minDate(e.date);
-		$('#endDate').data('DatePicker').maxDate(m);
-	});
+	
 });
 function searchRoom(){
 	var json={
@@ -27,14 +26,13 @@ function searchRoom(){
 		dataType : 'JSON',
 		data: JSON.stringify(json),
 		success:function(data){
-			console.log(data);
-			$("#searchRes").html("<p>found</p>");
+			for(var i=0;i<data.length;i++){
+				$("#roomList tbody").append('<tr><td>'+(i+1)+'</td><td>'+data[i].type+'</td><td>'+data[i].price+'</td><td><a href="roomDetail?typeID='+data[i].id+'" class="btn btn-default">Details</a></td></tr>');
+			}
 		},
 		error:function(xhr, textStatus, errorThrown) {
 			console.log(xhr.statusText);
 			console.log(textStatus);
-			alert(errorThrown);
-			alert("tttt");
 		}
 	});
 }

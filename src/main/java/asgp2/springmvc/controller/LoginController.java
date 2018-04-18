@@ -41,8 +41,7 @@ public class LoginController {
 			HttpSession session=request.getSession(true);
 			session.setAttribute("user", user);			
 			userService.updateLastAccessDate(user.getId(),DateUtil.getCurrentDate());
-			mav = new ModelAndView("welcome");
-			mav.addObject("firstname", user.getFirstname());
+			mav = new ModelAndView("home");
 		} else {
 			mav = new ModelAndView("welcome");
 			mav.addObject("message", "Username or Password is wrong!!");

@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import asgp2.springmvc.model.User;
 import asgp2.springmvc.model.Order;
+import asgp2.springmvc.model.Login;
 import asgp2.springmvc.service.BookingService;
 import asgp2.springmvc.service.RoomService;
 
@@ -37,6 +38,7 @@ public class CartController {
 		HttpSession session=request.getSession();
 		List<Order> orders=(List<Order>) session.getAttribute("orders");
 		ModelAndView mav=new ModelAndView("cart");
+		mav.addObject("login",new Login());
 		return mav;
 	}
 	@RequestMapping(value="/checkout", method=RequestMethod.POST,headers = "Content-Type=application/json")

@@ -7,17 +7,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link
+	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
+	rel="stylesheet">
 <script src="./resources/js/search.js"></script>
+<title>GOGO Pikachu | Search</title>
 <script>
 $(document).ready(function(){
 	var name = '<%=session.getAttribute("user")%>';
@@ -68,7 +74,7 @@ $(document).ready(function(){
 			</nav>
 		</div>
 
-		<form id="roomSearch" class="form-inline">
+		<form id="roomSearch">
 			<div class="form-group">
 				<label>Start Date:</label>
 				<div id="datepicker1" class="input-group date"
@@ -113,7 +119,19 @@ $(document).ready(function(){
 					class="btn btn-default">Search</button>
 			</div>
 		</div>
-		<div id="searchRes">rrrrr</div>
+		<div id="searchRes">
+			<table id="roomList" class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Room Type</th>
+						<th scope="col">Price</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>
