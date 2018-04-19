@@ -31,15 +31,17 @@ function roomAvail(){
 	console.log(json);
 	$.ajax({
 		type:"POST",
-		url:"searchProcess",
+		url:"roomAvail",
 		contentType:"application/json",
 		dataType : 'JSON',
 		data: JSON.stringify(json),
 		success:function(data){
-			$("#roomList tbody").empty();
-			for(var i=0;i<data.length;i++){
-				$("#roomList tbody").append('<tr><td>'+(i+1)+'</td><td>'+data[i].name+'</td><td>'+data[i].type+'</td><td>'+data[i].price+'</td><td><a href="roomDetail?typeID='+data[i].id+'" class="btn btn-default">Details</a></td></tr>');
+			$('#roomCount').empty()
+			var roomCount=data;
+			for(var i=1;i<=roomCount;i++){
+				$('#roomCount').append("<option value='"+i+"'>"+i+"</option>");
 			}
+			$("#availCount").text(roomCount);
 		},
 		error:function(xhr, textStatus, errorThrown) {
 			console.log(xhr.statusText);

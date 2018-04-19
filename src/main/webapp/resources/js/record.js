@@ -1,14 +1,17 @@
 $(function() {
 	$("#startDate").datepicker({
 		minDate : new Date(),
+		maxDate : new Date(new Date().setDate(new Date().getDate() + 89)),
 		dateFormat : "yy-mm-dd"
 	});
 	$("#endDate").datepicker({
-		maxDate : new Date().setDate(new Date().getDate() + 90),
+		minDate : new Date(),
+		maxDate : new Date(new Date().setDate(new Date().getDate() + 90)),
 		dateFormat : "yy-mm-dd",
 		useCurrent : false,
 	});
 });
+
 function logout(){
 	var json={};
 	$.ajax({
@@ -68,6 +71,26 @@ function showModal(data) {
 	$("#endDate").val(data.toDate);
 	$('select option[value=NewYork]').attr("selected", true);
 };
+function cancelBooking(id){
+	var oldBooking={
+			bookingID:id
+	}
+	$.ajax({
+		type : "POST",
+		url : "cancelBooking",
+		contentType : "application/json",
+		data : JSON.stringify(oldBooking),
+		success : function(data) {
+			alert("Reservation cancelled");
+			window.location.reload();
+		},
+		error : function(xhr, textStatus, errorThrown) {
+			console.log(xhr.statusText);
+			console.log(textStatus);
+			console.log(errorThrown);
+		}
+	});
+}
 function changeBooking(id, data) {
 	var oldBooking = {
 		bookingID : id
@@ -95,6 +118,7 @@ function changeBooking(id, data) {
 				data : JSON.stringify(orders),
 				success : function(data) {
 					alert("Make reservation successfully!");
+					window.location.reload();
 				},
 				error : function(xhr, textStatus, errorThrown) {
 					console.log(xhr.statusText);

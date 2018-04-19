@@ -233,7 +233,7 @@ $(document).ready(function(){
 								<option value="${i}">${i}</option>
 							</c:forEach>
 						</select> 
-						<span id="helpBlock" class="help-block">Only ${maxAvailRoom} Rooms Left</span>
+						<span id="helpBlock" class="help-block">Only <span id="availCount">${maxAvailRoom}</span>  Rooms Left</span>
 					</div>
 					<input type="button" class="btn btn-default" value="Add to Cart" onclick='addToCart()' />
 				</form>

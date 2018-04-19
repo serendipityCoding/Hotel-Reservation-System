@@ -11,17 +11,18 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link
+	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
+	rel="stylesheet">
 <script src="./resources/js/record.js"></script>
 <script>
 $(document).ready(function(){
-	var name = '<%= session.getAttribute("user") %>';
-	if(name==null){
+	var name = '<%=session.getAttribute("user")%>';
+	if(name=="null"){
 		$("#loginIcon").show();
 		$("#logoutIcon").hide();
 	}
@@ -32,6 +33,15 @@ $(document).ready(function(){
 	}
 })
 </script>
+<style>
+#startDate{
+	z-index:9999
+}
+#endDate{
+	z-index:9999
+}
+
+</style>
 </head>
 <body>
 	<div class="container">
@@ -42,8 +52,8 @@ $(document).ready(function(){
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
 						data-target="#myNavbar">
-						<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span>
 					</button>
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
@@ -68,43 +78,7 @@ $(document).ready(function(){
 			</div>
 			</nav>
 		</div>
-		<div id="contentBody" class="col-md-10 col-md-offset-2">
-			<h3>Coming Reservation</h3>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Start Date</th>
-						<th>End Date</th>
-					</tr>
-				</thead>
-				<c:forEach items="${futureBookings}" var="item">
-					<tr>
-						<td>${item.roomID}</td>
-						<td>${item.fromDate}</td>
-						<td>${item.toDate}</td>
-						<td><button type="button" class='btn btn-default' onclick='showModal({id:${item.id}, fromDate: "${item.fromDate}", toDate: "${item.toDate}"})'>Modify</button></td>
-					</tr>
-				</c:forEach>
-			</table>
-			<h3>Past Reservation</h3>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Start Date</th>
-						<th>End Date</th>
-					</tr>
-				</thead>
-				<c:forEach items="${pastBookings}" var="item">
-					<tr>
-						<td>${item.roomID}</td>
-						<td>${item.fromDate}</td>
-						<td>${item.toDate}</td>
-					</tr>
-				</c:forEach>
-			</table>
-			<!-- Modal -->
+		<!-- Modal -->
 			<div class="modal fade" id="myModal" role="dialog">
 				<div class="modal-dialog">
 
@@ -114,34 +88,37 @@ $(document).ready(function(){
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 							<h4 class="modal-title">Order</h4>
 						</div>
-						<div id="modal-body" class="modal-body">
-							<form id="roomSearch" class="form-horizontal" method="POST"
-								action="modifySearch">
+						<div class="modal-body">
+							<form id="roomSearch" class="form-horizontal" method="POST" action="modifySearch">
 								<input type="hidden" id="bookingID" />
 								<div class="form-group">
-									<label class="control-label col-sm-2">Start Date:</label>
-									<div id="datepicker1" class="input-group date"
-										data-date-format="yyyy-mm-dd">
-										<input class="form-control" name="startDate" id="startDate"
-											required="required" /> <span class="input-group-addon">
-											<span class="glyphicon glyphicon-calendar"></span>
-										</span>
+									<label class="control-label col-sm-4">Start Date:</label>
+									<div class="col-sm-6">
+										<div id="datepicker1" class="input-group date"
+											data-date-format="yyyy-mm-dd">
+											<input class="form-control" name="startDate" id="startDate"
+												required="required" /> <span class="input-group-addon">
+												<span class="glyphicon glyphicon-calendar"></span>
+											</span>
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-sm-2">End Date:</label>
-									<div id="datepicker2" class="input-group date"
-										data-date-format="yyyy-mm-dd">
-										<input class="form-control" name="endDate" id="endDate"
-											required="required" /> <span class="input-group-addon">
-											<span class="glyphicon glyphicon-calendar"></span>
-										</span>
+									<label class="control-label col-sm-4">End Date:</label>
+									<div class="col-sm-6">
+										<div id="datepicker2" class="input-group date"
+											data-date-format="yyyy-mm-dd">
+											<input class="form-control" name="endDate" id="endDate"
+												required="required" /> <span class="input-group-addon">
+												<span class="glyphicon glyphicon-calendar"></span>
+											</span>
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
-									<label path="location" class="control-label col-sm-2">Location:</label>
-									<div class="col-sm-10">
-										<select path="location" class="form-control" name="location"
+									<label class="control-label col-sm-4">Location:</label>
+									<div class="col-sm-6">
+										<select class="form-control" name="location"
 											id="location" required="required">
 											<option value=""></option>
 											<option value="NewYork">New York</option>
@@ -152,8 +129,8 @@ $(document).ready(function(){
 										</select>
 									</div>
 								</div>
-								<div cssClass="form-group">
-									<div cssClass="col-sm-offset-2 col-sm-10">
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
 										<input type="button" id="search" name="search"
 											class="btn btn-default" onclick='modifySearch()'
 											value="Search" />
@@ -170,6 +147,59 @@ $(document).ready(function(){
 
 				</div>
 			</div>
+		<div id="contentBody">
+			<h3>Coming Reservation</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Room Type</th>
+						<th>Start Date</th>
+						<th>End Date</th>
+						<th>Location</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${futureBookings}" var="item">
+						<tr>
+							<td>${item.id}</td>
+							<td>${item.roomType}</td>
+							<td>${item.fromDate}</td>
+							<td>${item.toDate}</td>
+							<td>${item.location}</td>
+							<td><button type="button" class='btn btn-default'
+									onclick='showModal({id:${item.id}, fromDate: "${item.fromDate}", toDate: "${item.toDate}"})'>Modify</button>
+								<button type="button" class='btn btn-default' onclick='cancelBooking(${item.id})'>Cancel</button>
+							</td>
+							
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<h3>Past Reservation</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Room Type</th>
+						<th>Start Date</th>
+						<th>End Date</th>
+						<th>Location</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${pastBookings}" var="item">
+						<tr>
+							<td>${item.id}</td>
+							<td>${item.roomType}</td>
+							<td>${item.fromDate}</td>
+							<td>${item.toDate}</td>
+							<td>${item.location}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </body>

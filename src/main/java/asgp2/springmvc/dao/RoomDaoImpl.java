@@ -25,13 +25,19 @@ public class RoomDaoImpl implements RoomDao {
 	JdbcTemplate jdbcTemplate;
 
 	public int assignRoom(Order order) {
-		String sql = "SELECT Rooms.id AS room " + "FROM Rooms, (SELECT Locations.id FROM Locations WHERE location='"
-				+ order.getLocation() + "') loc " + "WHERE Rooms.location= loc.id " + "AND Rooms.id NOT IN( "
-				+ "SELECT Rooms.id " + "FROM Rooms JOIN Bookings " + "ON Rooms.id=Bookings.roomID " + "WHERE '"
-				+ order.getFromDate() + "'<=Bookings.fromDate AND '" + order.getToDate() + "' >=Bookings.toDate "
-				+ "OR '" + order.getFromDate() + "'<Bookings.fromDate AND '" + order.getToDate()
-				+ "' >=Bookings.toDate " + "OR '" + order.getFromDate() + "'<=Bookings.fromDate AND '"
-				+ order.getToDate() + "' >Bookings.toDate)" + "LIMIT 1";
+		String sql = "SELECT Rooms.id AS room " 
+					+ "FROM Rooms, (SELECT Locations.id "
+					+ 				"FROM Locations "
+					+ 				"WHERE location='"
+					+ 				order.getLocation() + "') loc " 
+					+ "WHERE Rooms.location= loc.id " 
+					+ "AND Rooms.id NOT IN( "
+					+ 						"SELECT Rooms.id " 
+					+ 						"FROM Rooms JOIN Bookings " 
+					+ 						"ON Rooms.id=Bookings.roomID " 
+					+ 						"WHERE Bookings.isCancel=0 AND '"+ order.getFromDate() + "'<=Bookings.fromDate AND '" + order.getToDate() + "' >=Bookings.toDate "
+					+ 							"OR Bookings.isCancel=0 AND'" + order.getFromDate() + "'<Bookings.fromDate AND '" + order.getToDate()+ "' >=Bookings.toDate " 
+					+ 							"OR Bookings.isCancel=0 AND'" + order.getFromDate() + "'<=Bookings.fromDate AND '"+ order.getToDate() + "' >Bookings.toDate)" + "LIMIT 1";
 		logger.info(sql);
 		try {
 			int room = jdbcTemplate.queryForObject(sql, Integer.class);

@@ -131,7 +131,7 @@ $(document).ready(function(){
 					<th>Start Date</th>
 					<th>End Date</th>
 					<th>Location</th>				
-					<th>Price</th>
+					<th>Price (HKD)</th>
 				</tr>
 			</thead>
 			<c:forEach items="${sessionScope.orders}" var="order">
@@ -143,7 +143,15 @@ $(document).ready(function(){
 					<td>${order.fromDate}</td>
 					<td>${order.toDate}</td>
 					<td>${order.location}</td>
-					<td>${order.price}</td>
+					<td>${order.price} (${order.roomCount} Rooms)</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td scope="col">Total Cost: </td>
+					<td>${order.price*order.roomCount}</td>
 				</tr>
 			</c:forEach>
 		</table>

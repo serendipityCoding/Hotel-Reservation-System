@@ -32,14 +32,15 @@ public class BookingDaoImpl implements BookingDao {
 
 	@Override
 	public int createBooking(int roomID, int userID, Order order) {
-		String sql = "insert into Bookings values(NULL,?,?,?,?,?,0,0)";
+		String sql = "insert into Bookings values(NULL,?,?,?,?,?,?,0,0)";
 		try(Connection connection = (Connection) datasource.getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
 			statement.setInt(1,roomID);
 			statement.setInt(2,userID);
 			statement.setString(3,order.getRoomType());
-			statement.setString(4,order.getFromDate());
-			statement.setString(5,order.getToDate());
+			statement.setString(4,order.getLocation());
+			statement.setString(5,order.getFromDate());
+			statement.setString(6,order.getToDate());
 			int affectedRows = statement.executeUpdate();
 			if (affectedRows == 0) {
 	            throw new SQLException("Creating booking failed, no rows affected.");
@@ -62,7 +63,7 @@ public class BookingDaoImpl implements BookingDao {
 	public List<Booking> getBookingHistory(int userID) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.now();
-		String sql="SELECT * FROM Bookings WHERE userID = '"+userID+"' and fromDate <='"+dtf.format(localDate)+"'ORDER BY fromDate desc";
+		String sql="SELECT * FROM Bookings WHERE isCancel=0 AND userID = '"+userID+"' and fromDate <='"+dtf.format(localDate)+"'ORDER BY fromDate desc";
 		List<Booking> bookings=jdbcTemplate.query(sql, new BookingMapper());
 		return bookings;
 	}
@@ -71,7 +72,7 @@ public class BookingDaoImpl implements BookingDao {
 	public List<Booking> getFutureBooking(int userID){
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.now();
-		String sql="SELECT * FROM Bookings WHERE userID = '"+userID+"' and fromDate >'"+dtf.format(localDate)+"'ORDER BY fromDate desc";
+		String sql="SELECT * FROM Bookings WHERE isCancel=0 AND userID = '"+userID+"' and fromDate >'"+dtf.format(localDate)+"'ORDER BY fromDate desc";
 		List<Booking> bookings=jdbcTemplate.query(sql, new BookingMapper());
 		return bookings;
 	}
@@ -106,9 +107,13 @@ class BookingMapper implements RowMapper<Booking> {
 		Booking booking = new Booking();
 		booking.setId(rs.getInt("id"));
 		booking.setUserID(rs.getInt("userID"));
+		booking.setRoomType(rs.getString("roomType"));
 		booking.setRoomID(rs.getInt("roomID"));
+		booking.setLocation(rs.getString("location"));
 		booking.setFromDate(rs.getString("fromDate"));
 		booking.setToDate(rs.getString("toDate"));
+		booking.setIsCancel(rs.getInt("isCancel"));
+		booking.setIsPaid(rs.getInt("isPaid"));
 		return booking;
 	}
 }

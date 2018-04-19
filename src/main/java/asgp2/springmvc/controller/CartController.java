@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import asgp2.springmvc.model.User;
 import asgp2.springmvc.model.Order;
+import asgp2.springmvc.model.Response;
 import asgp2.springmvc.model.Login;
 import asgp2.springmvc.service.BookingService;
 import asgp2.springmvc.service.RoomService;
@@ -43,7 +44,7 @@ public class CartController {
 	}
 	@RequestMapping(value="/checkout", method=RequestMethod.POST,headers = "Content-Type=application/json")
 	@ResponseBody
-	public void checkout(HttpServletRequest request, HttpServletResponse response,@RequestBody List<Order> orders){
+	public Response checkout(HttpServletRequest request, HttpServletResponse response,@RequestBody List<Order> orders){
 		HttpSession session=request.getSession();
 		int userID=((User)session.getAttribute("user")).getId();
 		logger.info(userID);
@@ -57,6 +58,10 @@ public class CartController {
 			}
 		}
 		session.removeAttribute("orders");
+		Response res=new Response();
+		res.setSuccess(true);
+		res.setMessage("Assign room successfully");
+		return res;
 	}
 	@RequestMapping(value="/cancelBooking",method=RequestMethod.POST,headers="Content-Type=application/json")
 	@ResponseBody

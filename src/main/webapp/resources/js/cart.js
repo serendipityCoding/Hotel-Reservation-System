@@ -10,8 +10,9 @@ function checkout() {
 		contentType : "application/json",
 		dataType : 'JSON',
 		data : JSON.stringify(checkOutItems),
-		success : function() {
+		success : function(data) {
 			alert("Make reservation successfully!");
+			window.location.reload();
 		},
 		error : function(xhr, textStatus, errorThrown) {
 			

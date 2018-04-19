@@ -79,46 +79,49 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</nav>
-		<div class="modal fade" id="login" role="dialog">
-			<div class="modal-dialog">
+			<div class="modal fade" id="login" role="dialog">
+				<div class="modal-dialog">
 
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Login</h4>
-					</div>
-					<div class="modal-body">
-						<form:form id="loginForm" cssClass="form-horizontal"
-							modelAttribute="login" action="loginProcess" method="post">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Login</h4>
+						</div>
+						<div class="modal-body">
+							<form id="loginForm" class="form-horizontal"
+								action="loginProcess" method="post">
+								<div class="form-group">
+									<label path="username" class="control-label col-sm-2">Username:
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" name="username"
+											id="loginUsername" required="required" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label path="password" class="control-label col-sm-2">Password:</label>
+									<div class="col-sm-10">
+										<input type="password" class="form-control" name="password"
+											id="loginPassword" required="required" />
+									</div>
+								</div>
+							</form>
 							<div class="form-group">
-								<form:label path="username" cssClass="control-label col-sm-2">Username: </form:label>
-								<div class="col-sm-10">
-									<form:input path="username" type="text" cssClass="form-control"
-										name="username" id="loginUsername" required="required" />
+								<div class="col-sm-offset-2 col-sm-10">
+									<button id="login" name="login" class="btn btn-default"
+										onclick="login()">Login</button>
 								</div>
 							</div>
-							<div class="form-group">
-								<form:label path="password" cssClass="control-label col-sm-2">Password:</form:label>
-								<div class="col-sm-10">
-									<form:input path="password" type="password" cssClass="form-control"
-										name="password" id="loginPassword" required="required" />
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-10">
-									<form:button id="login" name="login" class="btn btn-default">Login</form:button>
-								</div>
-							</div>
-						</form:form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
+
 				</div>
-
 			</div>
-		</div>
 		
 		<table class="table">
 			<thead>
@@ -128,7 +131,7 @@ $(document).ready(function(){
 					<th>Start Date</th>
 					<th>End Date</th>
 					<th>Location</th>				
-					<th>Price</th>
+					<th>Price (HKD)</th>
 				</tr>
 			</thead>
 			<c:forEach items="${sessionScope.orders}" var="order">
@@ -140,7 +143,15 @@ $(document).ready(function(){
 					<td>${order.fromDate}</td>
 					<td>${order.toDate}</td>
 					<td>${order.location}</td>
-					<td>${order.price}</td>
+					<td>${order.price} (${order.roomCount} Rooms)</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td scope="col">Total Cost: </td>
+					<td>${order.price*order.roomCount}</td>
 				</tr>
 			</c:forEach>
 		</table>
