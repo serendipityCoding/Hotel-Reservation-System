@@ -7,11 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import asgp2.springmvc.model.Criteria;
@@ -39,5 +42,16 @@ public class RoomDetailController {
 		mav.addObject("endDate",criteria.getEndDate());
 		mav.addObject("location",criteria.getLocation());
 		return mav;
+	}
+	@RequestMapping(value="/roomAvail", method=RequestMethod.POST,headers = "Content-Type=application/json")
+	@ResponseBody
+	public int getRoomAvailable(HttpServletRequest request, HttpServletResponse response, @RequestBody String data){
+		JSONObject jsonObj = new JSONObject(data);
+		Criteria criteria=new Criteria();
+		criteria.setStartDate(jsonObj.getString("fromDate"));
+		criteria.setEndDate(jsonObj.getString("toDate"));
+		criteria.setLocation(jsonObj.getString("location"));
+		int maxAvailRoom=roomTypeService.getAvailRoomCount(criteria,jsonObj.getInt("roomType"));
+		return maxAvailRoom;		
 	}
 }

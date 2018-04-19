@@ -159,7 +159,11 @@ $(document).ready(function(){
 				</div>
 					<table id="roomInfo" class="table table-striped">
 					<tr>
-						<td>Size: </td>
+						<td>Room Type:</td>
+						<td>${roomDetail.type}</td>
+					</tr>
+					<tr>
+						<td>Size (sqm): </td>
 						<td>${roomDetail.size}</td>
 					</tr>
 					<tr>
@@ -190,14 +194,10 @@ $(document).ready(function(){
 						<td>Parking Lot: </td>
 						<td>${roomDetail.hasParkingLot==true ? "Yes" : "No"}</td>
 					</tr>
-					<tr>
-						<td>Price (USD): </td>
-						<td>${roomDetail.price}</td>
-					</tr>
 				</table>
 			</div>
 			<div class="col-md-6">
-				<h4>${roomDetail.type}</h4>
+				<h3>${roomDetail.name}</h3>
 				<p class="help-block">${roomDetail.description}</p>
 				<form id="booking" action="booking" method="POST">	
 					<input type="hidden" value="${roomDetail.type}" id="type" />

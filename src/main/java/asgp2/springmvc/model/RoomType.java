@@ -9,6 +9,7 @@ public class RoomType implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
+	private String name;
 	private String type;
 	private float size;
 	private int singleBedNo;
@@ -27,6 +28,14 @@ public class RoomType implements Serializable{
 	
 	public int getId(){
 		return this.id;
+	}
+	
+	public void setName(String name){
+		this.name=name;
+	}
+	
+	public String getName(){
+		return this.name;
 	}
 	
 	public void setType(String type){

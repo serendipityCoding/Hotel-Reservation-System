@@ -67,7 +67,8 @@ $(document).ready(function(){
 								class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 						<li id="personalIcon"><a href="record"><span
 								class="glyphicon glyphicon-user"></span> Personal</a></li>
-						<li id="cartIcon"><a href="cart"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+						<li id="cartIcon"><a href="cart"><span
+								class="glyphicon glyphicon-shopping-cart"></span></a>
 						<li id="loginIcon"><a data-toggle="modal"
 							data-target="#login"><span class="glyphicon glyphicon-log-in"></span>
 								Login </a></li>
@@ -78,103 +79,111 @@ $(document).ready(function(){
 			</div>
 			</nav>
 			<div class="modal fade" id="login" role="dialog">
-			<div class="modal-dialog">
+				<div class="modal-dialog">
 
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Login</h4>
-					</div>
-					<div class="modal-body">
-						<form id="loginForm" class="form-horizontal" action="loginProcess" method="post">
-							<div class="form-group">
-								<label path="username" class="control-label col-sm-2">Username: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control"
-										name="username" id="loginUsername" required="required" />
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Login</h4>
+						</div>
+						<div class="modal-body">
+							<form id="loginForm" class="form-horizontal"
+								action="loginProcess" method="post">
+								<div class="form-group">
+									<label path="username" class="control-label col-sm-2">Username:
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" name="username"
+											id="loginUsername" required="required" />
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label path="password" class="control-label col-sm-2">Password:</label>
-								<div class="col-sm-10">
-									<input type="password" class="form-control"
-										name="password" id="loginPassword" required="required" />
+								<div class="form-group">
+									<label path="password" class="control-label col-sm-2">Password:</label>
+									<div class="col-sm-10">
+										<input type="password" class="form-control" name="password"
+											id="loginPassword" required="required" />
+									</div>
 								</div>
-							</div>
-						</form>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button id="login" name="login" class="btn btn-default" onclick="login()">Login</button>
+							</form>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button id="login" name="login" class="btn btn-default"
+										onclick="login()">Login</button>
+								</div>
 							</div>
 						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+				</div>
+			</div>
+
+		</div>
+		<div id="contentBody">
+			<div id="roomSearch">
+				<form>
+					<div class="form-group">
+						<label>Start Date:</label>
+						<div id="datepicker1" class="input-group date"
+							data-date-format="mm-dd-yyyy">
+							<input type="text" class="form-control form-control-warning"
+								name="startDate" id="startDate" required="true" /> <span
+								class="input-group-addon"> <span
+								class="glyphicon glyphicon-calendar"></span>
+							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>End Date:</label>
+						<div id="datepicker2" class="input-group date"
+							data-date-format="mm-dd-yyyy">
+							<input class="form-control form-control-warning" name="endDate"
+								id="endDate" required /> <span class="input-group-addon">
+								<span class="glyphicon glyphicon-calendar"></span>
+							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Location:</label>
+						<div>
+							<select class="form-control form-control-warning" name="location"
+								id="location" required>
+								<option value=""></option>
+								<option value="NewYork">New York</option>
+								<option value="Shanghai">Shanghai</option>
+								<option value="Tokyo">Tokyo</option>
+								<option value="London">London</option>
+								<option value="Hong Kong">Hong Kong</option>
+							</select>
+						</div>
+					</div>
+				</form>
+				<div class="form-group">
+					<div>
+						<button id="search" name="search" onclick="searchRoom()"
+							class="btn btn-default">Search</button>
 					</div>
 				</div>
-
-			</div>
-		</div>
-		
-		</div>
-
-		<form id="roomSearch">
-			<div class="form-group">
-				<label>Start Date:</label>
-				<div id="datepicker1" class="input-group date"
-					data-date-format="mm-dd-yyyy">
-					<input type="text" class="form-control form-control-warning" name="startDate" id="startDate" required="true" /> 
-						<span class="input-group-addon"> 
-							<span class="glyphicon glyphicon-calendar"></span>
-						</span>	
-				</div>
-			</div>
-			<div class="form-group">
-				<label>End Date:</label>
-				<div id="datepicker2" class="input-group date"
-					data-date-format="mm-dd-yyyy">
-					<input class="form-control form-control-warning" name="endDate" id="endDate" required />
-					<span class="input-group-addon"> <span
-						class="glyphicon glyphicon-calendar"></span>
-					</span>
-				</div>
 			</div>
 
-
-			<div class="form-group">
-				<label>Location:</label>
-				<div>
-					<select class="form-control form-control-warning" name="location" id="location" required>
-						<option value=""></option>
-						<option value="NewYork">New York</option>
-						<option value="Shanghai">Shanghai</option>
-						<option value="Tokyo">Tokyo</option>
-						<option value="London">London</option>
-						<option value="Hong Kong">Hong Kong</option>
-					</select>
-				</div>
+			<div id="searchRes">
+				<table id="roomList" class="table table-hover">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Name</th>
+							<th scope="col">Room Type</th>
+							<th scope="col">Price</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
 			</div>
-
-		</form>
-		<div class="form-group">
-			<div>
-				<button id="search" name="search" onclick="searchRoom()"
-					class="btn btn-default">Search</button>
-			</div>
-		</div>
-		<div id="searchRes">
-			<table id="roomList" class="table table-hover">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Room Type</th>
-						<th scope="col">Price</th>
-						<th scope="col"></th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
 		</div>
 	</div>
 </body>

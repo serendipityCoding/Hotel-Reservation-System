@@ -1,23 +1,3 @@
-function checkout() {
-	var checkOutItems = [];
-	$("input.checkout:checked").each(function() {
-		checkOutItems.push($.parseJSON($(this).attr('data-value')));
-	});
-	console.log(checkOutItems);
-	$.ajax({
-		type : "POST",
-		url :"checkout" ,
-		contentType : "application/json",
-		dataType : 'JSON',
-		data : JSON.stringify(checkOutItems),
-		success : function() {
-			alert("Make reservation successfully!");
-		},
-		error : function(xhr, textStatus, errorThrown) {
-			
-		}
-	});
-};
 function logout(){
 	var json={};
 	$.ajax({
@@ -56,7 +36,7 @@ function login(){
 		success : function(response) {
 			if(response.success==true){
 				alert("You are logged in.");
-				$("#login").modal('hide');
+				$("#login").hide();
 				window.location.reload();
 			}
 			else{

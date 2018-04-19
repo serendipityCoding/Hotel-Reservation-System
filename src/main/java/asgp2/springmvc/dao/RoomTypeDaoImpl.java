@@ -30,9 +30,9 @@ public class RoomTypeDaoImpl implements RoomTypeDao{
                 +                                  "SELECT Rooms.id "
                 +                                  "FROM Rooms JOIN Bookings "
                 +                                  "ON Rooms.id=Bookings.roomID "
-                +                                  "WHERE '"+criteria.getStartDate()+ "'<=Bookings.fromDate AND '"+criteria.getEndDate()+ "' >=Bookings.toDate "
-                +                                      "OR '"+criteria.getStartDate()+ "'<Bookings.fromDate AND '"+criteria.getEndDate()+ "' >=Bookings.toDate "
-                +                                      "OR '"+criteria.getStartDate()+ "'<=Bookings.fromDate AND '"+criteria.getEndDate()+ "' >Bookings.toDate)"
+                +                                  "WHERE Bookings.isCancel=0 AND'"+criteria.getStartDate()+ "'<=Bookings.fromDate AND '"+criteria.getEndDate()+ "' >=Bookings.toDate "
+                +                                      "OR Bookings.isCancel=0 AND'"+criteria.getStartDate()+ "'<Bookings.fromDate AND '"+criteria.getEndDate()+ "' >=Bookings.toDate "
+                +                                      "OR Bookings.isCancel=0 AND'"+criteria.getStartDate()+ "'<=Bookings.fromDate AND '"+criteria.getEndDate()+ "' >Bookings.toDate)"
                 +                          "GROUP BY roomType) temp "
                 +              "WHERE RoomType.id = temp.t";
 		List<RoomType> roomType=jdbcTemplate.query(sql, new RoomTypeMapper());
@@ -54,9 +54,9 @@ public class RoomTypeDaoImpl implements RoomTypeDao{
                 +                                "SELECT Rooms.id "
                 +                                "FROM Rooms JOIN Bookings "
                 +                                "ON Rooms.id=Bookings.roomID "
-                +                                "WHERE '"+criteria.getStartDate()+ "'<=Bookings.fromDate AND '"+criteria.getEndDate()+ "' >=Bookings.toDate "
-                +                                   "OR '"+criteria.getStartDate()+ "'<Bookings.fromDate AND '"+criteria.getEndDate()+ "' >=Bookings.toDate "
-                +                                   "OR '"+criteria.getStartDate()+ "'<=Bookings.fromDate AND '"+criteria.getEndDate()+ "' >Bookings.toDate)";
+                +                                "WHERE Bookings.isCancel=0 AND'"+criteria.getStartDate()+ "'<=Bookings.fromDate AND '"+criteria.getEndDate()+ "' >=Bookings.toDate "
+                +                                   "OR Bookings.isCancel=0 AND'"+criteria.getStartDate()+ "'<Bookings.fromDate AND '"+criteria.getEndDate()+ "' >=Bookings.toDate "
+                +                                   "OR Bookings.isCancel=0 AND'"+criteria.getStartDate()+ "'<=Bookings.fromDate AND '"+criteria.getEndDate()+ "' >Bookings.toDate)";
 
 		int count=jdbcTemplate.queryForObject(sql, Integer.class);
 		return count;
@@ -69,6 +69,7 @@ class RoomTypeMapper implements RowMapper<RoomType> {
 	public RoomType mapRow(ResultSet rs, int arg1) throws SQLException {
 		RoomType roomType = new RoomType();
 		roomType.setId(rs.getInt("id"));
+		roomType.setName(rs.getString("name"));
 		roomType.setType(rs.getString("type"));
 		roomType.setSize(rs.getFloat("size"));
 		roomType.setSingleBedNo(rs.getInt("singleBedNo"));

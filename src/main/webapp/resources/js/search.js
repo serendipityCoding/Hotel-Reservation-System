@@ -89,7 +89,7 @@ function searchRoom(){
 			success:function(data){
 				$("#roomList tbody").empty();
 				for(var i=0;i<data.length;i++){
-					$("#roomList tbody").append('<tr><td>'+(i+1)+'</td><td>'+data[i].type+'</td><td>'+data[i].price+'</td><td><a href="roomDetail?typeID='+data[i].id+'" class="btn btn-default">Details</a></td></tr>');
+					$("#roomList tbody").append('<tr><td>'+(i+1)+'</td><td>'+data[i].name+'</td><td>'+data[i].type+'</td><td>'+data[i].price+'</td><td><a href="roomDetail?typeID='+data[i].id+'" class="btn btn-default">Details</a></td></tr>');
 				}
 			},
 			error:function(xhr, textStatus, errorThrown) {

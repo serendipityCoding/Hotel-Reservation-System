@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,14 +27,14 @@
 	rel="stylesheet">
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="resources/js/home.js"></script>
 <title>Welcome</title>
 <script>
 $(document).ready(function(){
 	var name = '<%=session.getAttribute("user")%>';
-		console.log(name);
 		if (name == "null") {
-			$("#signUpIcon").show()
 			$("#loginIcon").show();
+			$("#signUpIcon").show()
 			$("#personalIcon").hide();
 			$("#logoutIcon").hide();
 		} else {
@@ -77,6 +78,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 		</nav>
+		
 		<div class="modal fade" id="login" role="dialog">
 			<div class="modal-dialog">
 
@@ -87,28 +89,27 @@ $(document).ready(function(){
 						<h4 class="modal-title">Login</h4>
 					</div>
 					<div class="modal-body">
-						<form:form id="loginForm" cssClass="form-horizontal"
-							modelAttribute="login" action="loginProcess" method="post">
+						<form id="loginForm" class="form-horizontal" action="loginProcess" method="post">
 							<div class="form-group">
-								<form:label path="username" cssClass="control-label">Username: </form:label>
+								<label path="username" class="control-label col-sm-2">Username: </label>
 								<div class="col-sm-10">
-									<form:input path="username" cssClass="form-control"
+									<input type="text" class="form-control"
 										name="username" id="loginUsername" required="required" />
 								</div>
 							</div>
 							<div class="form-group">
-								<form:label path="password" cssClass="control-label">Password:</form:label>
+								<label path="password" class="control-label col-sm-2">Password:</label>
 								<div class="col-sm-10">
-									<form:password path="password" cssClass="form-control"
+									<input type="password" class="form-control"
 										name="password" id="loginPassword" required="required" />
 								</div>
 							</div>
-							<div class="form-group">
-								<div >
-									<form:button id="login" name="login" class="btn btn-default">Login</form:button>
-								</div>
+						</form>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button id="login" name="login" class="btn btn-default" onclick="login()">Login</button>
 							</div>
-						</form:form>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -117,6 +118,7 @@ $(document).ready(function(){
 
 			</div>
 		</div>
+		
 
 	</div>
 </body>

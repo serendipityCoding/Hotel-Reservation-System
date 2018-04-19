@@ -2,17 +2,51 @@ $(function() {
 	$("#fromDate").datepicker({
 		minDate : new Date(),
 		maxDate : new Date().setDate(new Date().getDate() + 89),
-		dateFormat : "yy-mm-dd"
+		dateFormat : "yy-mm-dd",
+		onSelect: function(formattedDate, date, inst) {
+			console.log("pppp");
+	        roomAvail();
+	    }
 	});
 	$("#toDate").datepicker({
 		maxDate : new Date().setDate(new Date().getDate() + 90),
 		dateFormat : "yy-mm-dd",
 		useCurrent : false,
+		onSelect: function(formattedDate, date, inst) {
+			console.log("pppp");
+	        roomAvail();
+	    }
 	});
 	$('#fromDate').on('dp.change', function(e) {
 		$('#toDate').datepicker('option', 'minDate', new Date($("#fromDate").val()+1));
 	});
 });
+function roomAvail(){
+	var json={
+			fromDate: $("#fromDate").val(),
+			toDate: $("#toDate").val(),
+			location: $("#location").val(),
+			roomType:location.search.split('typeID=')[1]
+	};
+	console.log(json);
+	$.ajax({
+		type:"POST",
+		url:"searchProcess",
+		contentType:"application/json",
+		dataType : 'JSON',
+		data: JSON.stringify(json),
+		success:function(data){
+			$("#roomList tbody").empty();
+			for(var i=0;i<data.length;i++){
+				$("#roomList tbody").append('<tr><td>'+(i+1)+'</td><td>'+data[i].name+'</td><td>'+data[i].type+'</td><td>'+data[i].price+'</td><td><a href="roomDetail?typeID='+data[i].id+'" class="btn btn-default">Details</a></td></tr>');
+			}
+		},
+		error:function(xhr, textStatus, errorThrown) {
+			console.log(xhr.statusText);
+			console.log(textStatus);
+		}
+	});
+}
 function logout(){
 	var json={};
 	$.ajax({
