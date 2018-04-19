@@ -31,17 +31,14 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var name = '<%=session.getAttribute("user")%>';
-		console.log(name);
 		if (name == "null") {
-			$("#signUpIcon").show()
 			$("#loginIcon").show();
-			$("#cartIcon").show();
+			$("#signUpIcon").show()
 			$("#personalIcon").hide();
 			$("#logoutIcon").hide();
 		} else {
 			$("#signUpIcon").hide()
 			$("#loginIcon").hide();
-			$("#cartIcon").show();
 			$("#personalIcon").show();
 			$("#logoutIcon").show();
 		}
@@ -95,21 +92,21 @@ $(document).ready(function(){
 						<form:form id="loginForm" cssClass="form-horizontal"
 							modelAttribute="login" action="loginProcess" method="post">
 							<div class="form-group">
-								<form:label path="username" cssClass="control-label">Username: </form:label>
-								<div>
+								<form:label path="username" cssClass="control-label col-sm-2">Username: </form:label>
+								<div class="col-sm-10">
 									<form:input path="username" type="text" cssClass="form-control"
 										name="username" id="loginUsername" required="required" />
 								</div>
 							</div>
 							<div class="form-group">
-								<form:label path="password" cssClass="control-label">Password:</form:label>
-								<div>
+								<form:label path="password" cssClass="control-label col-sm-2">Password:</form:label>
+								<div class="col-sm-10">
 									<form:input path="password" type="password" cssClass="form-control"
 										name="password" id="loginPassword" required="required" />
 								</div>
 							</div>
 							<div class="form-group">
-								<div >
+								<div class="col-sm-10">
 									<form:button id="login" name="login" class="btn btn-default">Login</form:button>
 								</div>
 							</div>

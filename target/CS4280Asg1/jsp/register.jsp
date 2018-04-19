@@ -30,6 +30,7 @@
 	rel="stylesheet">
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="./resources/js/register.js"></script>
 <script>
 $(document).ready(function(){
 	var name = '<%= session.getAttribute("user") %>';
@@ -77,7 +78,7 @@ $(document).ready(function(){
 							</a>
 						</li>
 						<li id="logoutIcon">
-							<a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+							<a onclick="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
 						</li>
 					</ul>
 				</div>
@@ -93,28 +94,27 @@ $(document).ready(function(){
 						<h4 class="modal-title">Login</h4>
 					</div>
 					<div class="modal-body">
-						<form:form id="loginForm" cssClass="form-horizontal"
-							modelAttribute="login" action="loginProcess" method="post">
+						<form id="loginForm" class="form-horizontal" action="loginProcess" method="post">
 							<div class="form-group">
-								<form:label path="username" cssClass="control-label col-sm-2">Username: </form:label>
+								<label path="username" class="control-label col-sm-2">Username: </label>
 								<div class="col-sm-10">
-									<form:input path="username" cssClass="form-control"
+									<input type="text" class="form-control"
 										name="username" id="loginUsername" required="required" />
 								</div>
 							</div>
 							<div class="form-group">
-								<form:label path="password" cssClass="control-label col-sm-2">Password:</form:label>
+								<label path="password" class="control-label col-sm-2">Password:</label>
 								<div class="col-sm-10">
-									<form:password path="password" cssClass="form-control"
+									<input type="password" class="form-control"
 										name="password" id="loginPassword" required="required" />
 								</div>
 							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-2 col-sm-10">
-									<form:button id="login" name="login" class="btn btn-default">Login</form:button>
-								</div>
+						</form>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button id="login" name="login" class="btn btn-default" onclick="login()">Login</button>
 							</div>
-						</form:form>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -123,6 +123,7 @@ $(document).ready(function(){
 
 			</div>
 		</div>
+		
 		<div id="contentBody">
 			<h2 id="contentTitle">Become our member</h2>
 			<form:form id="regForm"

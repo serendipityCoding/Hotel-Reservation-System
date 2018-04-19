@@ -81,6 +81,46 @@ $(document).ready(function(){
 			</div>
 		</div>
 		</nav>
+		<div class="modal fade" id="login" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Login</h4>
+					</div>
+					<div class="modal-body">
+						<form id="loginForm" class="form-horizontal" action="loginProcess" method="post">
+							<div class="form-group">
+								<label path="username" class="control-label col-sm-2">Username: </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control"
+										name="username" id="loginUsername" required="required" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label path="password" class="control-label col-sm-2">Password:</label>
+								<div class="col-sm-10">
+									<input type="password" class="form-control"
+										name="password" id="loginPassword" required="required" />
+								</div>
+							</div>
+						</form>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button id="login" name="login" class="btn btn-default" onclick="login()">Login</button>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		
 		<div id="detail" class="row">
 			<div class="col-md-6">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">

@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+#loginIcon{
+	cursor: pointer;
+}
+div.form-control-feedback{
+	display: none
+}

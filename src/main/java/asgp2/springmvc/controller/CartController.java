@@ -56,6 +56,7 @@ public class CartController {
 				logger.info(bookingID);
 			}
 		}
+		session.removeAttribute("orders");
 	}
 	@RequestMapping(value="/cancelBooking",method=RequestMethod.POST,headers="Content-Type=application/json")
 	@ResponseBody

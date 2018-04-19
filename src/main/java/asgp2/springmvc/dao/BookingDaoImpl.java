@@ -32,13 +32,14 @@ public class BookingDaoImpl implements BookingDao {
 
 	@Override
 	public int createBooking(int roomID, int userID, Order order) {
-		String sql = "insert into Bookings values(NULL,?,?,?,?)";
+		String sql = "insert into Bookings values(NULL,?,?,?,?,?,0,0)";
 		try(Connection connection = (Connection) datasource.getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
 			statement.setInt(1,roomID);
 			statement.setInt(2,userID);
-			statement.setString(3,order.getFromDate());
-			statement.setString(4,order.getToDate());
+			statement.setString(3,order.getRoomType());
+			statement.setString(4,order.getFromDate());
+			statement.setString(5,order.getToDate());
 			int affectedRows = statement.executeUpdate();
 			if (affectedRows == 0) {
 	            throw new SQLException("Creating booking failed, no rows affected.");

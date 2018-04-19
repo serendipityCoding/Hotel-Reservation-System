@@ -31,17 +31,14 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var name = '<%=session.getAttribute("user")%>';
-		console.log(name);
 		if (name == "null") {
-			$("#signUpIcon").show()
 			$("#loginIcon").show();
-			$("#cartIcon").show();
+			$("#signUpIcon").show()
 			$("#personalIcon").hide();
 			$("#logoutIcon").hide();
 		} else {
 			$("#signUpIcon").hide()
 			$("#loginIcon").hide();
-			$("#cartIcon").show();
 			$("#personalIcon").show();
 			$("#logoutIcon").show();
 		}

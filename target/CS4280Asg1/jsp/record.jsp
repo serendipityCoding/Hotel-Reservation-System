@@ -68,7 +68,7 @@ $(document).ready(function(){
 			</div>
 			</nav>
 		</div>
-		<div id="contentBody">
+		<div id="contentBody" class="col-md-10 col-md-offset-2">
 			<h3>Coming Reservation</h3>
 			<table class="table table-striped">
 				<thead>
@@ -83,8 +83,7 @@ $(document).ready(function(){
 						<td>${item.roomID}</td>
 						<td>${item.fromDate}</td>
 						<td>${item.toDate}</td>
-						<td><button type="button" class="btn btn-default"
-								onclick="showModal({id:${item.id}, fromDate: '${item.fromDate}', toDate: '${item.toDate}'})">Modify</button></td>
+						<td><button type="button" class='btn btn-default' onclick='showModal({id:${item.id}, fromDate: "${item.fromDate}", toDate: "${item.toDate}"})'>Modify</button></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -119,9 +118,9 @@ $(document).ready(function(){
 							<form id="roomSearch" class="form-horizontal" method="POST"
 								action="modifySearch">
 								<input type="hidden" id="bookingID" />
-								<div cssClass="form-group">
-									<label cssClass="control-label col-sm-2">Start Date:</label>
-									<div id="datepicker1" cssClass="input-group date"
+								<div class="form-group">
+									<label class="control-label col-sm-2">Start Date:</label>
+									<div id="datepicker1" class="input-group date"
 										data-date-format="yyyy-mm-dd">
 										<input class="form-control" name="startDate" id="startDate"
 											required="required" /> <span class="input-group-addon">
@@ -129,9 +128,9 @@ $(document).ready(function(){
 										</span>
 									</div>
 								</div>
-								<div cssClass="form-group">
-									<label cssClass="control-label col-sm-2">End Date:</label>
-									<div id="datepicker2" cssClass="input-group date"
+								<div class="form-group">
+									<label class="control-label col-sm-2">End Date:</label>
+									<div id="datepicker2" class="input-group date"
 										data-date-format="yyyy-mm-dd">
 										<input class="form-control" name="endDate" id="endDate"
 											required="required" /> <span class="input-group-addon">
@@ -139,9 +138,9 @@ $(document).ready(function(){
 										</span>
 									</div>
 								</div>
-								<div cssClass="form-group">
-									<label path="location" cssClass="control-label col-sm-2">Location:</label>
-									<div cssClass="col-sm-10">
+								<div class="form-group">
+									<label path="location" class="control-label col-sm-2">Location:</label>
+									<div class="col-sm-10">
 										<select path="location" class="form-control" name="location"
 											id="location" required="required">
 											<option value=""></option>
