@@ -1,8 +1,10 @@
 asgp2/springmvc/dao/RoomDao.class
 asgp2/springmvc/model/Staff.class
+asgp2/springmvc/dao/UnregisterUserDaoImpl.class
 asgp2/springmvc/controller/RoomBookingController.class
 asgp2/springmvc/dao/RoomDaoImpl.class
 asgp2/springmvc/service/RoomTypeService.class
+asgp2/springmvc/controller/UserInfoController.class
 asgp2/springmvc/model/RoomType.class
 asgp2/springmvc/util/TokenUtil.class
 asgp2/springmvc/model/Login.class
@@ -17,15 +19,18 @@ asgp2/springmvc/dao/BookingDaoImpl.class
 asgp2/springmvc/dao/RoomTypeDao.class
 asgp2/springmvc/service/UserServiceImpl.class
 asgp2/springmvc/model/Order.class
+asgp2/springmvc/model/UnregisterUser.class
 asgp2/springmvc/controller/RoomSearchController.class
 asgp2/springmvc/service/BookingServiceImpl.class
 asgp2/springmvc/service/RoomService.class
 asgp2/springmvc/model/Response.class
 asgp2/springmvc/controller/StaffRegistrationController.class
 asgp2/springmvc/controller/RegistrationController.class
+asgp2/springmvc/service/UnregisterUserServiceImpl.class
 asgp2/springmvc/controller/RoomDetailController.class
 asgp2/springmvc/dao/UserDao.class
 asgp2/springmvc/service/UserService.class
+asgp2/springmvc/dao/UnregisterUserDao.class
 asgp2/springmvc/dao/StaffDaoImpl.class
 asgp2/springmvc/service/RoomServiceImpl.class
 asgp2/springmvc/service/RoomTypeServiceImpl.class
@@ -43,6 +48,7 @@ asgp2/springmvc/model/StaffLogin.class
 asgp2/springmvc/controller/LoginController.class
 asgp2/springmvc/model/Criteria.class
 asgp2/springmvc/util/EmailUtil$1.class
+asgp2/springmvc/service/UnregisterUserService.class
 asgp2/springmvc/util/DateUtil.class
 asgp2/springmvc/util/EmailUtil.class
 asgp2/springmvc/controller/StaffLoginController.class

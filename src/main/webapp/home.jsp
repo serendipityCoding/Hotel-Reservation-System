@@ -34,7 +34,8 @@ $(document).ready(function(){
 	var name = '<%=session.getAttribute("user")%>';
 		if (name == "null") {
 			$("#loginIcon").show();
-			$("#signUpIcon").show()
+			$("#signUpIcon").show();
+			$("#cartIcon").show();
 			$("#personalIcon").hide();
 			$("#logoutIcon").hide();
 		} else {
@@ -70,9 +71,11 @@ $(document).ready(function(){
 							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 					<li id="personalIcon"><a href="record"><span
 							class="glyphicon glyphicon-user"></span> Personal</a></li>
+					<li id="cartIcon"><a href="cart"><span
+							class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
 					<li id="loginIcon"><a data-toggle="modal" data-target="#login"><span
 							class="glyphicon glyphicon-log-in"></span> Login </a></li>
-					<li id="logoutIcon"><a href="#"><span
+					<li id="logoutIcon"><a href="#" onclick="logout()"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>

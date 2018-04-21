@@ -9,7 +9,7 @@ public interface UserService {
 
 	void register(User user);
 
-	void updateLastAccessDate(int id, String lastAccessDate);
+	void updateLastAccessDate(String id, String lastAccessDate);
 
 	User validateUser(Login login);
 

@@ -2,7 +2,7 @@ package asgp2.springmvc.model;
 
 public class User {
 	
-	private int id;
+	private String id;
 	private String username;
 	private String password;
 	private String email;
@@ -13,11 +13,11 @@ public class User {
 	private String createDate;
 	private String lastAccessDate;
 	
-	public int getId(){
+	public String getId(){
 		return this.id;
 	}
 	
-	public void setId(int id){
+	public void setId(String id){
 		this.id=id;
 	}
 	

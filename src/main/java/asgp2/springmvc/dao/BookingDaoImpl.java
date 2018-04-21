@@ -31,12 +31,12 @@ public class BookingDaoImpl implements BookingDao {
 	JdbcTemplate jdbcTemplate;
 
 	@Override
-	public int createBooking(int roomID, int userID, Order order) {
+	public int createBooking(int roomID, String userID, Order order) {
 		String sql = "insert into Bookings values(NULL,?,?,?,?,?,?,0,0)";
 		try(Connection connection = (Connection) datasource.getConnection();
 			PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
 			statement.setInt(1,roomID);
-			statement.setInt(2,userID);
+			statement.setString(2,userID);
 			statement.setString(3,order.getRoomType());
 			statement.setString(4,order.getLocation());
 			statement.setString(5,order.getFromDate());
@@ -60,7 +60,7 @@ public class BookingDaoImpl implements BookingDao {
 	}
 
 	@Override
-	public List<Booking> getBookingHistory(int userID) {
+	public List<Booking> getBookingHistory(String userID) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.now();
 		String sql="SELECT * FROM Bookings WHERE isCancel=0 AND userID = '"+userID+"' and fromDate <='"+dtf.format(localDate)+"'ORDER BY fromDate desc";
@@ -69,7 +69,7 @@ public class BookingDaoImpl implements BookingDao {
 	}
 	
 	@Override 
-	public List<Booking> getFutureBooking(int userID){
+	public List<Booking> getFutureBooking(String userID){
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.now();
 		String sql="SELECT * FROM Bookings WHERE isCancel=0 AND userID = '"+userID+"' and fromDate >'"+dtf.format(localDate)+"'ORDER BY fromDate desc";
@@ -106,7 +106,7 @@ class BookingMapper implements RowMapper<Booking> {
 	public Booking mapRow(ResultSet rs, int arg1) throws SQLException {
 		Booking booking = new Booking();
 		booking.setId(rs.getInt("id"));
-		booking.setUserID(rs.getInt("userID"));
+		booking.setUserID(rs.getString("userID"));
 		booking.setRoomType(rs.getString("roomType"));
 		booking.setRoomID(rs.getInt("roomID"));
 		booking.setLocation(rs.getString("location"));

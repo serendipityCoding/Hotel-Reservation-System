@@ -68,7 +68,7 @@ $(document).ready(function(){
 						<li id="personalIcon"><a href="record"><span
 								class="glyphicon glyphicon-user"></span> Personal</a></li>
 						<li id="cartIcon"><a href="cart"><span
-								class="glyphicon glyphicon-shopping-cart"></span></a>
+								class="glyphicon glyphicon-shopping-cart"></span> Cart</a>
 						<li id="loginIcon"><a data-toggle="modal"
 							data-target="#login"><span class="glyphicon glyphicon-log-in"></span>
 								Login </a></li>

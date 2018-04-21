@@ -20,9 +20,13 @@ import org.json.JSONObject;
 import asgp2.springmvc.model.User;
 import asgp2.springmvc.model.Order;
 import asgp2.springmvc.model.Response;
+import asgp2.springmvc.model.UnregisterUser;
 import asgp2.springmvc.model.Login;
 import asgp2.springmvc.service.BookingService;
 import asgp2.springmvc.service.RoomService;
+import asgp2.springmvc.service.UnregisterUserService;
+import asgp2.springmvc.util.DateUtil;
+import asgp2.springmvc.util.TokenUtil;
 
 @Controller
 public class CartController {
@@ -30,6 +34,9 @@ public class CartController {
 	
 	@Autowired
 	BookingService bookingService;
+	
+	@Autowired
+	UnregisterUserService unregisterUserService;
 	
 	@Autowired
 	RoomService roomService;
@@ -40,27 +47,51 @@ public class CartController {
 		List<Order> orders=(List<Order>) session.getAttribute("orders");
 		ModelAndView mav=new ModelAndView("cart");
 		mav.addObject("login",new Login());
+		mav.addObject("user", new User());
 		return mav;
 	}
 	@RequestMapping(value="/checkout", method=RequestMethod.POST,headers = "Content-Type=application/json")
 	@ResponseBody
 	public Response checkout(HttpServletRequest request, HttpServletResponse response,@RequestBody List<Order> orders){
 		HttpSession session=request.getSession();
-		int userID=((User)session.getAttribute("user")).getId();
-		logger.info(userID);
-		for(Order order: orders){
-			logger.info(order.getPrice());
-			for(int i=0;i<order.getRoomCount();i++){
-				int roomID=roomService.assignRoom(order);
-				logger.info(roomID);
-				int bookingID=bookingService.createBooking(roomID, userID, order);
-				logger.info(bookingID);
-			}
-		}
-		session.removeAttribute("orders");
 		Response res=new Response();
-		res.setSuccess(true);
-		res.setMessage("Assign room successfully");
+		if(session.getAttribute("user")!=null){
+			String userID=((User)session.getAttribute("user")).getId();	
+			logger.info(userID);
+			for(Order order: orders){
+				logger.info(order.getPrice());
+				for(int i=0;i<order.getRoomCount();i++){
+					int roomID=roomService.assignRoom(order);
+					logger.info(roomID);
+					int bookingID=bookingService.createBooking(roomID, userID, order);
+					logger.info(bookingID);
+				}
+			}
+			session.removeAttribute("orders");
+			res.setSuccess(true);
+			res.setMessage("Assign room successfully");
+		}
+		else if(session.getAttribute("unregisteredUser")!=null){
+			String userID=((UnregisterUser)session.getAttribute("unregisteredUser")).getId();	
+			logger.info(userID);
+			for(Order order: orders){
+				logger.info(order.getPrice());
+				for(int i=0;i<order.getRoomCount();i++){
+					int roomID=roomService.assignRoom(order);
+					logger.info(roomID);
+					int bookingID=bookingService.createBooking(roomID, userID, order);
+					logger.info(bookingID);
+				}
+			}
+			session.removeAttribute("orders");
+			session.removeAttribute("unregisteredUser");
+			res.setSuccess(true);
+			res.setMessage("Assign room successfully");
+		}
+		else{
+			res.setSuccess(false);
+			res.setMessage("Please provide email address");
+		}
 		return res;
 	}
 	@RequestMapping(value="/cancelBooking",method=RequestMethod.POST,headers="Content-Type=application/json")
@@ -69,5 +100,20 @@ public class CartController {
 		JSONObject jsonObj = new JSONObject(data);
 		int oldBookingID=jsonObj.getInt("bookingID");
 		int bookingID=bookingService.cancelBooking(oldBookingID);
+	}
+	@RequestMapping(value="/oneTimeReserve", method=RequestMethod.POST, headers="Content-Type=application/json")
+	@ResponseBody
+	public Response oneTimeReserve(HttpServletRequest request, HttpServletResponse response,@RequestBody UnregisterUser user){
+		user.setCreateDate(DateUtil.getCurrentDate());
+		user.setId(TokenUtil.generateID());
+		unregisterUserService.createUnregisterUser(user);
+		HttpSession session=request.getSession();
+		session.setAttribute("unregisteredUser", user);
+		logger.debug(user.getEmail());
+		logger.debug(user.getId());
+		Response res=new Response();
+		res.setSuccess(true);
+		res.setMessage("Registered");
+		return res;
 	}
 }

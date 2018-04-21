@@ -3,7 +3,7 @@ package asgp2.springmvc.model;
 public class Booking {
 	private int id;
 	private int roomID;
-	private int userID;
+	private String userID;
 	private String roomType;
 	private String location;
 	private String fromDate;
@@ -27,11 +27,11 @@ public class Booking {
 		return this.roomID;
 	}
 	
-	public void setUserID(int userID){
+	public void setUserID(String userID){
 		this.userID=userID;
 	}
 	
-	public int getUserID(){
+	public String getUserID(){
 		return this.userID;
 	}
 	

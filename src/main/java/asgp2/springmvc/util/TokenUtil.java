@@ -1,6 +1,7 @@
 package asgp2.springmvc.util;
 
 import java.security.SecureRandom;
+import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
@@ -14,5 +15,9 @@ public class TokenUtil {
 		String token = bytes.toString();
 		logger.debug("tokennnnnnn"+token);
 		return token;
+	}
+	public static String generateID(){
+		String uuid=UUID.randomUUID().toString().replace("-", "");
+		return uuid;
 	}
 }

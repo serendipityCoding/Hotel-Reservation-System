@@ -31,7 +31,7 @@ public class BookingRecordController {
 	public ModelAndView showBookingRecord(HttpServletRequest request, HttpServletResponse response){
 		ModelAndView mav=new ModelAndView("record");
 		HttpSession session=request.getSession();
-		int userID=((User)session.getAttribute("user")).getId();
+		String userID=((User)session.getAttribute("user")).getId();
 		List<Booking> pastBookings=bookingService.getBookingHistory(userID);
 		List<Booking> futureBookings=bookingService.getFutureBooking(userID);
 		mav.addObject("pastBookings",pastBookings);

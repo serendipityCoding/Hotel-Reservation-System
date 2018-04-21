@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
 		userDao.register(user);
 	}
 
-	public void updateLastAccessDate(int id, String lastAccessDate) {
+	public void updateLastAccessDate(String id, String lastAccessDate) {
 		userDao.updateLastAccessDate(id, lastAccessDate);
 	}
 

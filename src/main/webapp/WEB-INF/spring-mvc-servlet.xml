@@ -15,6 +15,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 	<import resource="classpath:asgp2/config/roomType-beans.xml" />
 	<import resource="classpath:asgp2/config/booking-beans.xml" />
 	<import resource="classpath:asgp2/config/room-beans.xml" />
+	<import resource="classpath:asgp2/config/unregisterUser-beans.xml" />
 	
 	<context:component-scan base-package="asgp2.springmvc" />
 	<context:annotation-config />

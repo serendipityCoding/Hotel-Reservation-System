@@ -13,17 +13,17 @@ public class BookingServiceImpl implements BookingService{
 	public BookingDao bookingDao;
 	
 	@Override
-	public int createBooking(int roomID, int userID, Order order){
+	public int createBooking(int roomID, String userID, Order order){
 		return bookingDao.createBooking(roomID, userID, order);
 	}
 
 	@Override
-	public List<Booking> getBookingHistory(int userID) {
+	public List<Booking> getBookingHistory(String userID) {
 		return bookingDao.getBookingHistory(userID);
 	}
 	
 	@Override 
-	public List<Booking> getFutureBooking(int userID){
+	public List<Booking> getFutureBooking(String userID){
 		return bookingDao.getFutureBooking(userID);
 	}
 	

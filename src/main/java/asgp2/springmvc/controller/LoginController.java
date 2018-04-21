@@ -30,7 +30,6 @@ public class LoginController {
 	public ModelAndView showLogin(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("login");
 		mav.addObject("login", new Login());
-
 		return mav;
 	}
 

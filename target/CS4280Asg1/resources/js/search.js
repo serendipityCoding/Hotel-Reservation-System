@@ -79,7 +79,6 @@ function searchRoom(){
 				toDate: $("#endDate").val(),
 				location: $("#location").val()
 		};
-		console.log(json);
 		$.ajax({
 			type:"POST",
 			url:"searchProcess",

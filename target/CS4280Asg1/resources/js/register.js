@@ -49,3 +49,37 @@ function login(){
 		}
 	})
 }
+function registerNow(){
+	var json={
+		username: $("#username").val(),
+		password: $("#password").val(),
+		email: $("#email").val(),
+		firstname: $("#firstname").val(),
+		lastname: $("#lastname").val(),
+		phone: $("#phone").val(),
+		address: $("#address").val(),
+		createDate: "",
+		lastAccessDate: ""
+	}
+	$.ajax({
+		type : "POST",
+		url :"registerMini" ,
+		contentType : "application/json",
+		dataType : 'JSON',
+		data : JSON.stringify(json),
+		success : function(response) {
+			if(response.success==true){
+				alert("Register successfully!");
+				window.location.reload();
+			}
+			else{
+				alert("You have registered before!");
+			}
+		},
+		error : function(xhr, textStatus, errorThrown) {
+			alert(xhr.statusText);
+			console.log(textStatus);
+		}
+	})
+}
+

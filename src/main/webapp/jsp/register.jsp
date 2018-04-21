@@ -63,6 +63,7 @@ $(document).ready(function(){
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
 						<li><a href="#">Our Hotels</a></li>
+						<li><a href="search">Find Rooms</a></li>
 						<li><a href="#">Offers</a></li>
 						<li><a href="#">Dining</a></li>
 					</ul>
@@ -73,6 +74,8 @@ $(document).ready(function(){
 						<li id="personalIcon">
 							<a href="record"><span class="glyphicon glyphicon-user"></span> Personal</a>
 						</li>
+						<li id="cartIcon"><a href="cart"><span
+								class="glyphicon glyphicon-shopping-cart"></span> Cart</a>
 						<li id="loginIcon">
 							<a data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Login
 							</a>
@@ -126,71 +129,66 @@ $(document).ready(function(){
 		
 		<div id="contentBody">
 			<h2 id="contentTitle">Become our member</h2>
-			<form:form id="regForm"
-				cssClass="form-horizontal col-md-10 col-md-offset-2"
-				modelAttribute="user" action="registerProcess" method="post">
+			<form id="regForm" class="form-horizontal col-md-10 col-md-offset-2">
 				<div class="form-group">
-					<form:label path="email" cssClass="control-label col-sm-2">Email:</form:label>
+					<label class="control-label col-sm-2">Email:</label>
 					<div class="col-sm-7">
-						<form:input path="email" name="email" id="email"
-							cssClass="form-control" required="required" />
+						<input name="email" id="email" class="form-control" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
-					<form:label path="username" cssClass="control-label col-sm-2">Username:</form:label>
+					<label class="control-label col-sm-2">Username:</label>
 					<div class="col-sm-7">
-						<form:input path="username" name="username" id="username"
-							cssClass="form-control" required="required" />
+						<input name="username" id="username" class="form-control" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
-					<form:label path="password" cssClass="control-label col-sm-2">Password:</form:label>
+					<label class="control-label col-sm-2">Password:</label>
 					<div class="col-sm-7">
-						<form:password path="password" name="password" id="password"
-							cssClass="form-control" required="required" />
+						<input type="password" name="password" id="password"
+							class="form-control" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
-					<form:label path="password" cssClass="control-label col-sm-2">Retype Password:</form:label>
+					<label type="password" class="control-label col-sm-2">Retype Password:</label>
 					<div class="col-sm-7">
-						<form:password path="password" name="retypePassword"
-							id="retypePassword" cssClass="form-control" required="required" />
+						<input type="password" name="retypePassword"
+							id="retypePassword" class="form-control" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
-					<form:label path="firstname" cssClass="control-label col-sm-2">FirstName:</form:label>
+					<label class="control-label col-sm-2">FirstName:</label>
 					<div class="col-sm-7">
-						<form:input path="firstname" name="firstname" id="firstname"
-							cssClass="form-control" required="required" />
+						<input name="firstname" id="firstname"
+							class="form-control" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
-					<form:label path="lastname" cssClass="control-label col-sm-2">LastName:</form:label>
+					<label class="control-label col-sm-2">LastName:</label>
 					<div class="col-sm-7">
-						<form:input path="lastname" name="lastname" id="lastname"
-							cssClass="form-control" required="required" />
+						<input name="lastname" id="lastname" class="form-control" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
-					<form:label path="address" cssClass="control-label col-sm-2">Address:</form:label>
+					<label class="control-label col-sm-2">Address:</label>
 					<div class="col-sm-7">
-						<form:input path="address" name="address" id="address"
-							cssClass="form-control" />
+						<input name="address" id="address"
+							class="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
-					<form:label path="phone" cssClass="control-label col-sm-2">Phone:</form:label>
+					<label class="control-label col-sm-2">Phone:</label>
 					<div class="col-sm-7">
-						<form:input path="phone" name="phone" id="phone"
-							cssClass="form-control" required="required" />
+						<input name="phone" id="phone"
+							class="form-control" required="required" />
 					</div>
 				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<form:button id="register" name="register" class="btn btn-default">Register</form:button>
-					</div>
+			</form>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button id="register" name="register" class="btn btn-default" onclick="registerNow()">Register</button>
 				</div>
-			</form:form>
+			</div>
 		</div>
 	</div>
 	<footer class="footer">
