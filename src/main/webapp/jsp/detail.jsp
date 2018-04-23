@@ -27,7 +27,7 @@
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="./resources/js/detail.js"></script>
-<title>Detail</title>
+<title>GOGO Pikachu</title>
 
 <script>
 $(document).ready(function(){
@@ -75,7 +75,7 @@ $(document).ready(function(){
 							class="glyphicon glyphicon-user"></span> Personal</a></li>
 					<li id="loginIcon"><a data-toggle="modal" data-target="#login"><span
 							class="glyphicon glyphicon-log-in"></span> Login </a></li>
-					<li id="logoutIcon"><a href="#"><span
+					<li id="logoutIcon"><a href="logout"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>

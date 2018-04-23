@@ -14,6 +14,10 @@ import org.springframework.jdbc.core.RowMapper;
 
 import asgp2.springmvc.controller.CartController;
 import asgp2.springmvc.model.Order;
+import asgp2.springmvc.model.Room;
+import asgp2.springmvc.model.RoomInfo;
+import asgp2.springmvc.model.Staff;
+import asgp2.springmvc.model.User;
 
 public class RoomDaoImpl implements RoomDao {
 	private static final Logger logger = Logger.getLogger(RoomDaoImpl.class);
@@ -46,5 +50,37 @@ public class RoomDaoImpl implements RoomDao {
 			logger.debug(e.getMessage());
 		}
 		return -1;
+	}
+
+	@Override
+	public List<RoomInfo> getAllRooms() {
+		String sql = "select Rooms.id as id, Rooms.roomID as roomID, "
+					+"Rooms.floor as floor, RoomType.`type` as roomType, Rooms.isActive as isActive , "
+					+"Locations.location as location from Rooms, Locations, RoomType "
+					+"where Rooms.roomType=RoomType.id and Rooms.location=Locations.id";
+
+		List<RoomInfo> rooms = jdbcTemplate.query(sql, new RoomInfoMapper());
+
+		return rooms.size() > 0 ? rooms : null;
+	}
+
+	@Override
+	public void updateActiveStatus(int roomID, int isActive) {
+		String sql="UPDATE Rooms set isActive=? where id=?";
+		jdbcTemplate.update(sql, new Object[]{roomID, isActive});
+	}
+}
+class RoomInfoMapper implements RowMapper<RoomInfo> {
+
+	public RoomInfo mapRow(ResultSet rs, int arg1) throws SQLException {
+		RoomInfo roomInfo = new RoomInfo();
+		roomInfo.setId(rs.getInt("id"));
+		roomInfo.setRoomID(rs.getInt("roomID"));
+		roomInfo.setFloorNo(rs.getInt("floor"));
+		roomInfo.setRoomType(rs.getString("roomType"));
+		roomInfo.setLocation(rs.getString("location"));
+		roomInfo.setIsActive(rs.getInt("isActive"));
+
+		return roomInfo;
 	}
 }

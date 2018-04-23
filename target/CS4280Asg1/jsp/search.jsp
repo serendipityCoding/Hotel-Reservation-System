@@ -24,7 +24,7 @@
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet">
 <script src="./resources/js/search.js"></script>
-<title>GOGO Pikachu | Search</title>
+<title>GOGO Pikachu|Search</title>
 <script>
 $(document).ready(function(){
 	var name = '<%=session.getAttribute("user")%>';
@@ -157,7 +157,7 @@ $(document).ready(function(){
 								<option value="Shanghai">Shanghai</option>
 								<option value="Tokyo">Tokyo</option>
 								<option value="London">London</option>
-								<option value="Hong Kong">Hong Kong</option>
+								<option value="HongKong">Hong Kong</option>
 							</select>
 						</div>
 					</div>

@@ -39,7 +39,7 @@ public class UserDaoImpl implements UserDao {
 		
 		jdbcTemplate.update(sql,
 				new Object[] { user.getId(), user.getUsername(), user.getPassword(), user.getEmail(), user.getFirstname(),
-						user.getLastname(), user.getPhone(), user.getAddress(), user.getCreateDate(), null });
+						user.getLastname(), user.getPhone(), user.getAddress(), user.getCreateDate()});
 
 	}
 
@@ -79,7 +79,7 @@ class UserMapper implements RowMapper<User> {
 		user.setLastname(rs.getString("lastname"));
 		user.setEmail(rs.getString("email"));
 		user.setAddress(rs.getString("address"));
-		user.setPhone(rs.getInt("phone"));
+		user.setPhone(rs.getString("phone"));
 
 		return user;
 	}

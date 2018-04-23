@@ -1,3 +1,18 @@
+function identity1(){
+		$("#registerMini").hide();
+		$("#oneOffMini").hide();
+		$("#loginMini").show();
+};
+function identity2(){
+	$("#registerMini").show();
+	$("#oneOffMini").hide();
+	$("#loginMini").hide();
+};
+function identity3(){
+	$("#registerMini").hide();
+	$("#oneOffMini").show();
+	$("#loginMini").hide();
+};
 function checkout() {
 	var checkOutItems = [];
 	$("input.checkout:checked").each(function() {
@@ -75,6 +90,34 @@ function login(){
 		}
 	})
 }
+function loginMini(){
+	var json={
+			username: $("#usernameMini").val(),
+			password: $("#passwordMini").val()
+	};
+	console.log(json);
+	$.ajax({
+		type : "POST",
+		url :"loginProcess" ,
+		contentType : "application/json",
+		dataType : 'JSON',
+		data : JSON.stringify(json),
+		success : function(response) {
+			if(response.success==true){
+				alert("You are logged in.");
+				$("#login").modal('hide');
+				window.location.reload();
+			}
+			else{
+				alert("Wrong username or password");
+			}
+		},
+		error : function(xhr, textStatus, errorThrown) {
+			alert(xhr.statusText);
+			console.log(textStatus);
+		}
+	})
+}
 function registerNow(){
 	var json={
 		username: $("#username").val(),
@@ -117,7 +160,7 @@ function oneOffReserve(){
 			id:'',
 			email: $("#oneOffEmail").val(),
 			name: $("#oneOffName").val(),
-			phone: $("#oneOffName").val(),
+			phone: $("#oneOffPhone").val(),
 			createDate:''
 	};
 	console.log(json);

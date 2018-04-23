@@ -6,8 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
+<link rel="shortcut icon" type="image/png" href="./resources/image/icon.png" sizes="16x16">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="./resources/css/register.css" rel="stylesheet">
+<link href="./resources/css/general.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -21,6 +23,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script
 	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
 <script
 	src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 <link rel="stylesheet"
@@ -38,6 +41,7 @@ $(document).ready(function(){
 	if(name=="null"){
 		$("#loginIcon").show();
 		$("#logoutIcon").hide();
+		$("#personalIcon").hide();
 	}
 	else{
 		$("#signUpIcon").hide()
@@ -46,11 +50,11 @@ $(document).ready(function(){
 	}
 })
 </script>
-<title>Registration</title>
+<title>GOGO Pikachu|Registration</title>
 </head>
 <body>
 	<div class="container">
-		<h2>GOGO Pikachu</h2>
+		<h2 id="gogoPikachu">GOGO Pikachu</h2>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -88,7 +92,7 @@ $(document).ready(function(){
 			</div>
 		</nav>
 		<div class="modal fade" id="login" role="dialog">
-			<div class="modal-dialog">
+			<div class="modal-dialog modal-admin">
 
 				<!-- Modal content-->
 				<div class="modal-content">
@@ -97,25 +101,25 @@ $(document).ready(function(){
 						<h4 class="modal-title">Login</h4>
 					</div>
 					<div class="modal-body">
-						<form id="loginForm" class="form-horizontal" action="loginProcess" method="post">
-							<div class="form-group">
-								<label path="username" class="control-label col-sm-2">Username: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control"
-										name="username" id="loginUsername" required="required" />
+						<div id="modalContent">
+							<form id="loginForm" class="form-horizontal" action="loginProcess" method="post">
+								<div class="form-group">
+									<div class="col-sm-8 col-sm-offset-2">
+										<input type="text" class="form-control"
+											name="username" id="loginUsername" placeholder="Username" required />
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label path="password" class="control-label col-sm-2">Password:</label>
-								<div class="col-sm-10">
-									<input type="password" class="form-control"
-										name="password" id="loginPassword" required="required" />
+								<div class="form-group">
+									<div class="col-sm-8 col-sm-offset-2">
+										<input type="password" class="form-control"
+											name="password" id="loginPassword" placeholder="Password" required />
+									</div>
 								</div>
-							</div>
-						</form>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button id="login" name="login" class="btn btn-default" onclick="login()">Login</button>
+							</form>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-8">
+									<button id="login" name="login" class="btn btn-default btn-block" onclick="login()">Login</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -129,70 +133,75 @@ $(document).ready(function(){
 		
 		<div id="contentBody">
 			<h2 id="contentTitle">Become our member</h2>
-			<form id="regForm" class="form-horizontal col-md-10 col-md-offset-2">
+			<form data-toggle="validator" role="form" id="regForm" class="form-horizontal col-md-10 col-md-offset-2">
 				<div class="form-group">
-					<label class="control-label col-sm-2">Email:</label>
-					<div class="col-sm-7">
-						<input name="email" id="email" class="form-control" required="required" />
+					<label class="control-label col-sm-3">Email:</label>
+					<div class="col-sm-6">
+						<input type="email" name="email" id="email" class="form-control" data-error="Bruh, that email address is invalid" required/>
+						<div class="help-block with-errors"></div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2">Username:</label>
-					<div class="col-sm-7">
+					<label class="control-label col-sm-3">Username:</label>
+					<div class="col-sm-6">
 						<input name="username" id="username" class="form-control" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2">Password:</label>
-					<div class="col-sm-7">
-						<input type="password" name="password" id="password"
-							class="form-control" required="required" />
-					</div>
+					<label class="control-label col-sm-3">Password:</label>
+					<div class="col-sm-6">
+						<input type="password" name="password" id="password" data-minlength="6" class="form-control" required/>
+						<div class="help-block">Minimum of 6 characters</div>
+					</div>			
 				</div>
 				<div class="form-group">
-					<label type="password" class="control-label col-sm-2">Retype Password:</label>
-					<div class="col-sm-7">
+					<label type="password" class="control-label col-sm-3">Retype Password:</label>
+					<div class="col-sm-6">
 						<input type="password" name="retypePassword"
-							id="retypePassword" class="form-control" required="required" />
+							id="retypePassword" class="form-control" data-match="#password" data-match-error="Whoops, these don't match" required />
+						 <div class="help-block with-errors"></div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2">FirstName:</label>
-					<div class="col-sm-7">
+					<label class="control-label col-sm-3">FirstName:</label>
+					<div class="col-sm-6">
 						<input name="firstname" id="firstname"
 							class="form-control" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2">LastName:</label>
-					<div class="col-sm-7">
+					<label class="control-label col-sm-3">LastName:</label>
+					<div class="col-sm-6">
 						<input name="lastname" id="lastname" class="form-control" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2">Address:</label>
-					<div class="col-sm-7">
+					<label class="control-label col-sm-3">Address:</label>
+					<div class="col-sm-6">
 						<input name="address" id="address"
 							class="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2">Phone:</label>
-					<div class="col-sm-7">
+					<label class="control-label col-sm-3">Phone:</label>
+					<div class="col-sm-6">
 						<input name="phone" id="phone"
 							class="form-control" required="required" />
 					</div>
 				</div>
 			</form>
 			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
+				<div class="col-sm-offset-8">
 					<button id="register" name="register" class="btn btn-default" onclick="registerNow()">Register</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<footer class="footer">
-		<div class="container">All rights reserved</div>
-	</footer>
+
+
+
+
+
+
 </body>
 </html>

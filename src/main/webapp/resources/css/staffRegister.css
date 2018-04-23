@@ -5,3 +5,26 @@
 #pwAlert{
 	display:none
 }
+#registerStaffForm {
+	background-color: #EDEDED;
+    padding-top: 40px;
+    margin-top: 10%;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 15px;
+    border-color:#d2d2d2;
+    border-width: 5px;
+    box-shadow:0 1px 0 #cfcfcf;
+}
+form>h2{
+	margin-bottom: 40px
+}
+
+.form-control {
+    border-radius: 10px;
+}
+
+.col-sm-offset-2 col-sm-10" {
+    text-align: center;
+}

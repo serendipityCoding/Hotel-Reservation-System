@@ -62,7 +62,7 @@ public class StaffDaoImpl implements StaffDao {
 	public Staff validateUser(StaffLogin staffLogin) {
 
 		String sql = "select * from Staff where `username`='" + staffLogin.getUsername() + "' and `password`='"
-				+ staffLogin.getPassword() + "' and `role`='" + staffLogin.getRole() + "'";
+				+ staffLogin.getPassword() + "' and `role`='" + staffLogin.getRole() + "' and `isActive`=1";
 
 		List<Staff> staff = jdbcTemplate.query(sql, new StaffMapper());
 

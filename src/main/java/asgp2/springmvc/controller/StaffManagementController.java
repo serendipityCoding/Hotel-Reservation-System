@@ -36,10 +36,21 @@ public class StaffManagementController {
 
 	@RequestMapping(value = "/staffList", method = RequestMethod.GET)
 	public ModelAndView getStaffList(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("staffList");
-		List<Staff> staffRes=staffService.getAllStaff();
-		mav.addObject("staffList", staffRes);
-		return mav;
+		HttpSession session=request.getSession();
+		if(session.getAttribute("staff")==null){
+			ModelAndView mav = new ModelAndView("staffLogin");
+			mav.addObject("staffLogin", new StaffLogin());
+			return mav;
+		}
+		else if(((Staff)session.getAttribute("staff")).getRole()!=1){
+			return null;
+		}
+		else{
+			ModelAndView mav = new ModelAndView("staffList");
+			List<Staff> staffRes=staffService.getAllStaff();
+			mav.addObject("staffList", staffRes);
+			return mav;
+		}
 	}
 	
 	@RequestMapping(value="/changeStatus",method=RequestMethod.POST,headers="Content-Type=application/json")

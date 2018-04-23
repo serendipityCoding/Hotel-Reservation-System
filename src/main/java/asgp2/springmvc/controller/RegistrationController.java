@@ -53,6 +53,7 @@ public class RegistrationController {
 		if(userService.emailDuplication(user)==false){
 			user.setId(TokenUtil.generateID());
 			user.setCreateDate(DateUtil.getCurrentDate());
+			userService.register(user);
 			HttpSession session=request.getSession();
 			session.setAttribute("user", user);
 			userService.updateLastAccessDate(user.getId(),DateUtil.getCurrentDate());

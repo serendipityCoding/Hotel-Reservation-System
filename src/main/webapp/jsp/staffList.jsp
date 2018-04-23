@@ -37,6 +37,12 @@
 $(document).ready(function() {
     $('#staffList').DataTable();
 } );
+$(document).ready(function(){
+	var name = '<%=session.getAttribute("staff")%>';
+		if (name == "null") {
+			window.location.href="staffLogin";
+		} 
+})
 </script>
 </head>
 <body>
@@ -54,20 +60,21 @@ $(document).ready(function() {
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="">Room</a></li>
-					<li><a href="userList">User</a></li>
-					<li><a href="#">Personal</a></li>
+					<li class="active"><a href="staffList">Staff</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><span
+							class="glyphicon glyphicon-user"></span> Personal</a></li>
 					<li><a href="staffLogout"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>
 		</div>
 		</nav>
-		<h2>Hotel Manager List</h2>
+		
 		<button type="button" class="btn btn-default" data-toggle="modal"
 			data-target="#addManager" id="addButton">Add Manager</button>
+		<h2>Hotel Manager List</h2>
 		<!-- Modal -->
 		<div class="modal fade" id="addManager" role="dialog">
 			<div class="modal-dialog">
@@ -125,16 +132,7 @@ $(document).ready(function() {
 						<td id="status"><input id="status${item.id}"
 							value="${item.id}" type="checkbox" data-toggle="toggle"
 							data-size="small" data-on="Active" data-off="Inactive"
-							class="toggle-event"> <script>
-							$(function() {								
-								if (${item.isActive} == 1) {								
-									$('#status'+${item.id}).bootstrapToggle('on');
-								} 
-								else {
-									$('#status'+${item.id}).bootstrapToggle('off')
-								}
-							});
-						</script></td>
+							class="toggle-event" ${item.isActive==1?"checked":''}> </td>
 					</tr>
 				</c:forEach>
 			</tbody>

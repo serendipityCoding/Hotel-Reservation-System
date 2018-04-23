@@ -30,6 +30,12 @@
 $(document).ready(function() {
     $('#userList').DataTable();
 } );
+$(document).ready(function(){
+	var name = '<%=session.getAttribute("staff")%>';
+		if (name == "null") {
+			window.location.href="staffLogin";
+		} 
+	})
 </script>
 </head>
 <body>
@@ -43,12 +49,11 @@ $(document).ready(function() {
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Staff</a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="">Room</a></li>
-					<li><a href="userList">User</a></li>
+					<li><a href="roomList">Room</a></li>
+					<li class="active"><a href="userList">User</a></li>
 					<li><a href="#">Personal</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -65,8 +70,7 @@ $(document).ready(function() {
 			<table id="userList" class="table table-striped table-bordered">
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>Last Name</th>
+						<th>Name</th>
 						<th>Email</th>
 						<th>Phone</th>
 					</tr>
@@ -74,8 +78,7 @@ $(document).ready(function() {
 				<tbody>
 					<c:forEach items="${userList}" var="item">
 						<tr>
-							<th>${item.id}</th>
-							<td>${item.firstname}${item.lastname}</td>
+							<td>${item.firstname} ${item.lastname}</td>
 							<td>${item.email}</td>
 							<td>${item.phone}</td>
 						</tr>

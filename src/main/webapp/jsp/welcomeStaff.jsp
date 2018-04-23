@@ -27,17 +27,27 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="">Room</a></li>
+					<li><a href="roomList">Room</a></li>
 					<li><a href="userList">User</a></li>
 					<li><a href="#">Personal</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="staffLogin"><span
+					<li><a href="staffLogout"><span
 							class="glyphicon glyphicon-log-out"></span>Logout</a></li>
 				</ul>
 			</div>
 		</div>
 		</nav>
+		<div id="content" >
+			<div class="panel panel-info">
+				<div class="panel-heading">Announcement</div>
+				<div class="panel-body">Panel Content</div>
+			</div>
+			<div class="panel panel-info">
+				<div class="panel-heading">Announcement</div>
+				<div class="panel-body">Panel Content</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

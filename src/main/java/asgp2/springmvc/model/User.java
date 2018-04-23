@@ -8,7 +8,7 @@ public class User {
 	private String email;
 	private String firstname;
 	private String lastname;
-	private int phone;
+	private String phone;
 	private String address;
 	private String createDate;
 	private String lastAccessDate;
@@ -69,11 +69,11 @@ public class User {
 		this.address = address;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return this.phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	

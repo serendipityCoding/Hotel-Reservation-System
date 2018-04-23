@@ -22,9 +22,11 @@ asgp2/springmvc/model/Order.class
 asgp2/springmvc/model/UnregisterUser.class
 asgp2/springmvc/controller/RoomSearchController.class
 asgp2/springmvc/service/BookingServiceImpl.class
+asgp2/springmvc/controller/RoomManagementController.class
 asgp2/springmvc/service/RoomService.class
 asgp2/springmvc/model/Response.class
 asgp2/springmvc/controller/StaffRegistrationController.class
+asgp2/springmvc/dao/RoomInfoMapper.class
 asgp2/springmvc/controller/RegistrationController.class
 asgp2/springmvc/service/UnregisterUserServiceImpl.class
 asgp2/springmvc/controller/RoomDetailController.class
@@ -49,6 +51,7 @@ asgp2/springmvc/controller/LoginController.class
 asgp2/springmvc/model/Criteria.class
 asgp2/springmvc/util/EmailUtil$1.class
 asgp2/springmvc/service/UnregisterUserService.class
+asgp2/springmvc/model/RoomInfo.class
 asgp2/springmvc/util/DateUtil.class
 asgp2/springmvc/util/EmailUtil.class
 asgp2/springmvc/controller/StaffLoginController.class
