@@ -10,7 +10,9 @@ $(document).ready(function() {
 		dateFormat : "yy-mm-dd",
 		useCurrent : false,
 	});
-	
+	$('#startDate').on('dp.change', function(e) {
+		$('#endDate').datepicker('option', 'minDate', new Date($("#startDate").val()+1));
+	});
 });
 function logout(){
 	var json={};

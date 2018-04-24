@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<link href="resources/css/general.css" rel="stylesheet">
+<link href="resources/css/home.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -81,7 +83,43 @@ $(document).ready(function(){
 			</div>
 		</div>
 		</nav>
-		
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<img src="./resources/image/type1detail1.jpg" alt="detail1"
+						style="width: 100%;">
+				</div>
+
+				<div class="item">
+					<img src="./resources/image/type1detail2.jpg" alt="detail2"
+						style="width: 100%;">
+				</div>
+
+				<div class="item">
+					<img src="./resources/image/type1detail3.jpg" alt="detail3"
+						style="width: 100%;">
+				</div>
+			</div>
+
+			<!-- Left and right controls -->
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span> <span
+				class="sr-only">Previous</span>
+			</a> <a class="right carousel-control" href="#myCarousel"
+				data-slide="next"> <span
+				class="glyphicon glyphicon-chevron-right"></span> <span
+				class="sr-only">Next</span>
+			</a>
+		</div>
+
 		<div class="modal fade" id="login" role="dialog">
 			<div class="modal-dialog">
 
@@ -92,25 +130,28 @@ $(document).ready(function(){
 						<h4 class="modal-title">Login</h4>
 					</div>
 					<div class="modal-body">
-						<form id="loginForm" class="form-horizontal" action="loginProcess" method="post">
+						<form id="loginForm" class="form-horizontal" action="loginProcess"
+							method="post">
 							<div class="form-group">
-								<label path="username" class="control-label col-sm-2">Username: </label>
+								<label path="username" class="control-label col-sm-2">Username:
+								</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control"
-										name="username" id="loginUsername" required="required" />
+									<input type="text" class="form-control" name="username"
+										id="loginUsername" required="required" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label path="password" class="control-label col-sm-2">Password:</label>
 								<div class="col-sm-10">
-									<input type="password" class="form-control"
-										name="password" id="loginPassword" required="required" />
+									<input type="password" class="form-control" name="password"
+										id="loginPassword" required="required" />
 								</div>
 							</div>
 						</form>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button id="login" name="login" class="btn btn-default" onclick="login()">Login</button>
+								<button id="login" name="login" class="btn btn-default"
+									onclick="login()">Login</button>
 							</div>
 						</div>
 					</div>
@@ -121,7 +162,7 @@ $(document).ready(function(){
 
 			</div>
 		</div>
-		
+
 
 	</div>
 </body>

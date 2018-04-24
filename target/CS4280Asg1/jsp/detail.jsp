@@ -24,6 +24,8 @@
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet">
 <link href="./resources/css/detail.css" rel="stylesheet">
+<link href="./resources/css/general.css" rel="stylesheet">
+
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="./resources/js/detail.js"></script>
@@ -73,6 +75,8 @@ $(document).ready(function(){
 							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 					<li id="personalIcon"><a href="record"><span
 							class="glyphicon glyphicon-user"></span> Personal</a></li>
+					<li id="cartIcon"><a href="cart"><span
+									class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
 					<li id="loginIcon"><a data-toggle="modal" data-target="#login"><span
 							class="glyphicon glyphicon-log-in"></span> Login </a></li>
 					<li id="logoutIcon"><a href="logout"><span
@@ -134,15 +138,15 @@ $(document).ready(function(){
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="./resources/image/type${roomDetail.id}detail1.jpg" alt="detail1" style="width: 100%;">
+							<img src="./resources/image/type1detail1.jpg" alt="detail1" style="width: 100%;">
 						</div>
 
 						<div class="item">
-							<img src="./resources/image/type${roomDetail.id}detail2.jpg" alt="detail2" style="width: 100%;">
+							<img src="./resources/image/type1detail2.jpg" alt="detail2" style="width: 100%;">
 						</div>
 
 						<div class="item">
-							<img src="./resources/image/type${roomDetail.id}detail3.jpg" alt="detail3" style="width: 100%;">
+							<img src="./resources/image/type1detail3.jpg" alt="detail3" style="width: 100%;">
 						</div>
 					</div>
 

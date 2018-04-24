@@ -15,10 +15,13 @@ function identity3(){
 };
 function checkout() {
 	var checkOutItems = [];
+	var total=0;
 	$("input.checkout:checked").each(function() {
 		checkOutItems.push($.parseJSON($(this).attr('data-value')));
+		total=total+$.parseJSON($(this).attr('data-value')).roomCount*$.parseJSON($(this).attr('data-value')).price;
 	});
-	console.log(checkOutItems);
+	$("#totalCost").html("Total Cost: "+total+" HKD");
+	console.log(total);
 	$.ajax({
 		type : "POST",
 		url :"checkout" ,
