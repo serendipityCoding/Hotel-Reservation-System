@@ -76,7 +76,7 @@ $(document).ready(function(){
 							<li id="cartIcon"><a href="cart"><span
 									class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
 							<li id="loginIcon"><a data-toggle="modal"
-								data-target="#login"><span
+								data-target="#loginModal"><span
 									class="glyphicon glyphicon-log-in"></span> Login </a></li>
 							<li id="logoutIcon"><a href="#" onclick="logout()"><span
 									class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -105,7 +105,7 @@ $(document).ready(function(){
 							<h3><span id="totalCost"></span></h3>
 							<p class="help-block"> Become our member and enjoy 5% discount </p>
 							<div id="loginMini" class="collapse">
-								<form id="loginForm" class="form-horizontal"
+								<form id="loginFormMini" class="form-horizontal"
 									action="loginProcess" method="post">
 									<div class="form-group">
 										<label path="username" class="control-label col-sm-2">Username:
@@ -241,7 +241,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 
-			<div class="modal fade" id="login" role="dialog">
+			<div class="modal fade" id="loginModal" role="dialog">
 				<div class="modal-dialog">
 
 					<!-- Modal content-->
@@ -306,7 +306,7 @@ $(document).ready(function(){
 						<td>${order.fromDate}</td>
 						<td>${order.toDate}</td>
 						<td>${order.location}</td>
-						<td>${order.price}(${order.roomCount} Rooms)</td>
+						<td>${order.price} (${order.roomCount}${order.roomCount==1 ? ' Room':' Rooms'})</td>
 					</tr>
 					<tr>
 						<td></td>
