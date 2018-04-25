@@ -4,8 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,10 +25,13 @@ import asgp2.springmvc.util.DateUtil;
 
 @Controller
 public class LoginController {
-
+	private static final Logger logger = Logger.getLogger(LoginController.class);
+	
 	@Autowired
 	UserService userService;
-
+	@Autowired
+	MessageSource messageSource;
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView showLogin(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("login");
@@ -43,7 +49,6 @@ public class LoginController {
 		login.setPassword(jsonObj.getString("password"));
 		Response res=new Response();
 		User user = userService.validateUser(login);
-
 		if (null != user) {
 			HttpSession session=request.getSession(true);
 			session.setAttribute("user", user);			

@@ -1,5 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <html>
@@ -54,136 +54,136 @@ $(document).ready(function(){
 </head>
 <body>
 	<div class="container">
-		<h2 id="gogoPikachu">GOGO Pikachu</h2>
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
-				<div class="collapse navbar-collapse" id="myNavbar">
-					<ul class="nav navbar-nav">
-						<li><a href="#">Our Hotels</a></li>
-						<li><a href="search">Find Rooms</a></li>
-						<li><a href="#">Offers</a></li>
-						<li><a href="#">Dining</a></li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li id="signUpIcon" class="active">
-							<a href="register"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
-						</li>
-						<li id="personalIcon">
-							<a href="record"><span class="glyphicon glyphicon-user"></span> Personal</a>
-						</li>
-						<li id="cartIcon"><a href="cart"><span
-								class="glyphicon glyphicon-shopping-cart"></span> Cart</a>
-						<li id="loginIcon">
-							<a data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Login
-							</a>
-						</li>
-						<li id="logoutIcon">
-							<a onclick="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<div class="modal fade" id="login" role="dialog">
-			<div class="modal-dialog modal-admin">
-
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Login</h4>
+			<h2><spring:message code="hotel.name" text="default text" /></h2>
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#myNavbar">
+							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
 					</div>
-					<div class="modal-body">
-						<div id="modalContent">
-							<form id="loginForm" class="form-horizontal" action="loginProcess" method="post">
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<ul class="nav navbar-nav">
+							<li><a href="#"><spring:message code="nav.opt1" text="default text" /></a></li>
+							<li><a href="search"><spring:message code="nav.opt2" text="default text" /></a></li>
+							<li><a href="#"><spring:message code="nav.opt3" text="default text" /></a></li>
+							<li><a href="#"><spring:message code="nav.opt4" text="default text" /></a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li id="signUpIcon"><a href="register"><span
+									class="glyphicon glyphicon-user"></span> <spring:message code="nav.opt5" text="default text" /></a></li>
+							<li id="personalIcon"><a href="record"><span
+									class="glyphicon glyphicon-user"></span> <spring:message code="nav.opt6" text="default text" /></a></li>
+							<li id="cartIcon"><a href="cart"><span
+									class="glyphicon glyphicon-shopping-cart"></span> <spring:message code="nav.opt7" text="default text" /></a></li>
+							<li id="loginIcon"><a data-toggle="modal"
+								data-target="#loginModal"><span
+									class="glyphicon glyphicon-log-in"></span> <spring:message code="nav.opt8" text="default text" /> </a></li>
+							<li id="logoutIcon"><a href="#" onclick="logout()"><span
+									class="glyphicon glyphicon-log-out"></span> <spring:message code="nav.opt9" text="default text" /></a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="modal fade" id="loginModal" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title"><spring:message code="nav.opt8" text="default text" /></h4>
+						</div>
+						<div class="modal-body">
+							<form id="loginForm" class="form-horizontal"
+								action="loginProcess" method="post">
 								<div class="form-group">
-									<div class="col-sm-8 col-sm-offset-2">
-										<input type="text" class="form-control"
-											name="username" id="loginUsername" placeholder="Username" required />
+									<label path="username" class="control-label col-sm-2"><spring:message code="login.username" text="default text" />
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" name="username"
+											id="loginUsername" required="required" />
 									</div>
 								</div>
 								<div class="form-group">
-									<div class="col-sm-8 col-sm-offset-2">
-										<input type="password" class="form-control"
-											name="password" id="loginPassword" placeholder="Password" required />
+									<label path="password" class="control-label col-sm-2"><spring:message code="login.password" text="default text" /></label>
+									<div class="col-sm-10">
+										<input type="password" class="form-control" name="password"
+											id="loginPassword" required="required" />
 									</div>
 								</div>
 							</form>
 							<div class="form-group">
-								<div class="col-sm-offset-2 col-sm-8">
-									<button id="login" name="login" class="btn btn-default btn-block" onclick="login()">Login</button>
+								<div class="col-sm-offset-2 col-sm-10">
+									<button id="login" name="login" class="btn btn-default"
+										onclick="login()"><spring:message code="button.login" text="default text" /></button>
 								</div>
 							</div>
 						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><spring:message code="button.close" text="default text" /></button>
+						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
-				</div>
 
+				</div>
 			</div>
-		</div>
 		
 		<div id="contentBody">
-			<h2 id="contentTitle">Become our member</h2>
+			<h2 id="contentTitle"><spring:message code="title.becomeOurMember" text="default text" /></h2>
 			<form data-toggle="validator" role="form" id="regForm" class="form-horizontal col-md-10 col-md-offset-2">
 				<div class="form-group">
-					<label class="control-label col-sm-3">Email:</label>
+					<label class="control-label col-sm-3"><spring:message code="register.email" text="default text" /></h2></label>
 					<div class="col-sm-6">
-						<input type="email" name="email" id="email" class="form-control" data-error="Bruh, that email address is invalid" required/>
+						<input type="email" name="email" id="email" class="form-control" data-error="<spring:message code="register.emailInfo" text="default text" />" required/>
 						<div class="help-block with-errors"></div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-3">Username:</label>
+					<label class="control-label col-sm-3"><spring:message code="register.username" text="default text" /></label>
 					<div class="col-sm-6">
 						<input name="username" id="username" class="form-control" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-3">Password:</label>
+					<label class="control-label col-sm-3"><spring:message code="register.password" text="default text" /></label>
 					<div class="col-sm-6">
 						<input type="password" name="password" id="password" data-minlength="6" class="form-control" required/>
-						<div class="help-block">Minimum of 6 characters</div>
+						<div class="help-block"><spring:message code="register.passwordInfo" text="default text" /></div>
 					</div>			
 				</div>
 				<div class="form-group">
-					<label type="password" class="control-label col-sm-3">Retype Password:</label>
+					<label type="password" class="control-label col-sm-3"><spring:message code="register.retypePassword" text="default text" /></label>
 					<div class="col-sm-6">
 						<input type="password" name="retypePassword"
-							id="retypePassword" class="form-control" data-match="#password" data-match-error="Whoops, these don't match" required />
+							id="retypePassword" class="form-control" data-match="#password" data-match-error="<spring:message code="register.retypePasswordInfo" text="default text" />" required />
 						 <div class="help-block with-errors"></div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-3">FirstName:</label>
+					<label class="control-label col-sm-3"><spring:message code="register.firstName" text="default text" /></label>
 					<div class="col-sm-6">
 						<input name="firstname" id="firstname"
 							class="form-control" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-3">LastName:</label>
+					<label class="control-label col-sm-3"><spring:message code="register.lastName" text="default text" /></label>
 					<div class="col-sm-6">
 						<input name="lastname" id="lastname" class="form-control" required="required" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-3">Address:</label>
+					<label class="control-label col-sm-3"><spring:message code="register.billingAddress" text="default text" /></label>
 					<div class="col-sm-6">
 						<input name="address" id="address"
 							class="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-3">Phone:</label>
+					<label class="control-label col-sm-3"><spring:message code="register.phone" text="default text" /></label>
 					<div class="col-sm-6">
 						<input name="phone" id="phone"
 							class="form-control" required="required" />
@@ -192,7 +192,7 @@ $(document).ready(function(){
 			</form>
 			<div class="form-group">
 				<div class="col-sm-offset-8">
-					<button id="register" name="register" class="btn btn-default" onclick="registerNow()">Register</button>
+					<button id="register" name="register" class="btn btn-default" onclick="registerNow()"><spring:message code="button.register" text="default text" /></button>
 				</div>
 			</div>
 		</div>

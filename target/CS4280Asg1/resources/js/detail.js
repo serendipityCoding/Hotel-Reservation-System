@@ -9,6 +9,7 @@ $(function() {
 	    }
 	});
 	$("#toDate").datepicker({
+		minDate : new Date(),
 		maxDate : new Date().setDate(new Date().getDate() + 90),
 		dateFormat : "yy-mm-dd",
 		useCurrent : false,

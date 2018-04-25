@@ -1,3 +1,4 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -49,9 +50,12 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<a href="?language=en_HK">English</a> |
+<a href="?language=cn">Chinese</a>
+
 	<div class="container">
 		<div id="contentHeader">
-			<h2>GOGO Pikachu</h2>
+			<h2><spring:message code="hotel.name" text="default text" /></h2>
 			<nav class="navbar navbar-default">
 				<div class="container-fluid">
 					<div class="navbar-header">
@@ -63,23 +67,23 @@ $(document).ready(function(){
 					</div>
 					<div class="collapse navbar-collapse" id="myNavbar">
 						<ul class="nav navbar-nav">
-							<li><a href="#">Our Hotels</a></li>
-							<li><a href="search">Find Rooms</a></li>
-							<li><a href="#">Offers</a></li>
-							<li><a href="#">Dining</a></li>
+							<li><a href="#"><spring:message code="nav.opt1" text="default text" /></a></li>
+							<li><a href="search"><spring:message code="nav.opt2" text="default text" /></a></li>
+							<li><a href="#"><spring:message code="nav.opt3" text="default text" /></a></li>
+							<li><a href="#"><spring:message code="nav.opt4" text="default text" /></a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li id="signUpIcon"><a href="register"><span
-									class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+									class="glyphicon glyphicon-user"></span> <spring:message code="nav.opt5" text="default text" /></a></li>
 							<li id="personalIcon"><a href="record"><span
-									class="glyphicon glyphicon-user"></span> Personal</a></li>
+									class="glyphicon glyphicon-user"></span> <spring:message code="nav.opt6" text="default text" /></a></li>
 							<li id="cartIcon"><a href="cart"><span
-									class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+									class="glyphicon glyphicon-shopping-cart"></span> <spring:message code="nav.opt7" text="default text" /></a></li>
 							<li id="loginIcon"><a data-toggle="modal"
 								data-target="#loginModal"><span
-									class="glyphicon glyphicon-log-in"></span> Login </a></li>
+									class="glyphicon glyphicon-log-in"></span> <spring:message code="nav.opt8" text="default text" /> </a></li>
 							<li id="logoutIcon"><a href="#" onclick="logout()"><span
-									class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+									class="glyphicon glyphicon-log-out"></span> <spring:message code="nav.opt9" text="default text" /></a></li>
 						</ul>
 					</div>
 				</div>
@@ -93,22 +97,22 @@ $(document).ready(function(){
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Before checkout...</h4>
+							<h4 class="modal-title"><spring:message code="title.beforeCheckout" text="default text" /></h4>
 						</div>
 						<div class="modal-body">
 							<button type="button" class="btn btn-info" id="identity1"
-								onclick="identity1()">Login</button>
+								onclick="identity1()"><spring:message code="nav.opt8" text="default text" /></button>
 							<button type="button" class="btn btn-info" id="identity2"
-								onclick="identity2()">Register</button>
+								onclick="identity2()"><spring:message code="nav.opt5" text="default text" /></button>
 							<button type="button" class="btn btn-info" id="identity3"
-								onclick="identity3()">One time Reservation</button>
+								onclick="identity3()"><spring:message code="oneTimeReservation" text="default text" /></button>
 							<h3><span id="totalCost"></span></h3>
-							<p class="help-block"> Become our member and enjoy 5% discount </p>
+							<p class="help-block"> <spring:message code="checkout.promo" text="default text" /> </p>
 							<div id="loginMini" class="collapse">
 								<form id="loginFormMini" class="form-horizontal"
 									action="loginProcess" method="post">
 									<div class="form-group">
-										<label path="username" class="control-label col-sm-2">Username:
+										<label path="username" class="control-label col-sm-2"><spring:message code="login.username" text="default text" />
 										</label>
 										<div class="col-sm-10">
 											<input type="text" class="form-control" name="usernameMini"
@@ -116,7 +120,7 @@ $(document).ready(function(){
 										</div>
 									</div>
 									<div class="form-group">
-										<label path="password" class="control-label col-sm-2">Password:</label>
+										<label path="password" class="control-label col-sm-2"><spring:message code="login.password" text="default text" /></label>
 										<div class="col-sm-10">
 											<input type="password" class="form-control"
 												name="passwordMini" id="passwordMini" required="required" />
@@ -126,65 +130,64 @@ $(document).ready(function(){
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
 										<button id="login" name="login" class="btn btn-default"
-											onclick="loginMini()">Login</button>
+											onclick="loginMini()"><spring:message code="button.login" text="default text" /></button>
 									</div>
 								</div>
 							</div>
 							<div id="registerMini" class="collapse">
-								<h2 id="contentTitle">Become our member</h2>
+								<h2 id="contentTitle"><spring:message code="title.becomeOurMember" text="default text" /></h2>
 								<form id="regForm"
 									class="form-horizontal col-md-10 col-md-offset-2">
 									<div class="form-group">
-										<label class="control-label col-sm-2">Email:</label>
+										<label class="control-label col-sm-2"><spring:message code="register.email" text="default text" /></label>
 										<div class="col-sm-7">
 											<input name="email" id="email" class="form-control"
 												required="required" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label col-sm-2">Username:</label>
+										<label class="control-label col-sm-2"><spring:message code="register.username" text="default text" /></label>
 										<div class="col-sm-7">
 											<input name="username" id="username" class="form-control"
 												required="required" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label col-sm-2">Password:</label>
+										<label class="control-label col-sm-2"><spring:message code="register.password" text="default text" /></label>
 										<div class="col-sm-7">
 											<input type="password" name="password" id="password"
 												class="form-control" required="required" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label type="password" class="control-label col-sm-2">Retype
-											Password:</label>
+										<label type="password" class="control-label col-sm-2"><spring:message code="register.retypePassword" text="default text" /></label>
 										<div class="col-sm-7">
 											<input type="password" name="retypePassword"
 												id="retypePassword" class="form-control" required="required" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label col-sm-2">FirstName:</label>
+										<label class="control-label col-sm-2"><spring:message code="register.firstName" text="default text" /></label>
 										<div class="col-sm-7">
 											<input name="firstname" id="firstname" class="form-control"
 												required="required" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label col-sm-2">LastName:</label>
+										<label class="control-label col-sm-2"><spring:message code="register.lastName" text="default text" /></label>
 										<div class="col-sm-7">
 											<input name="lastname" id="lastname" class="form-control"
 												required="required" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label col-sm-2">Address:</label>
+										<label class="control-label col-sm-2"><spring:message code="register.billingAddress" text="default text" /></label>
 										<div class="col-sm-7">
 											<input name="address" id="address" class="form-control" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label col-sm-2">Phone:</label>
+										<label class="control-label col-sm-2"><spring:message code="register.phone" text="default text" /></label>
 										<div class="col-sm-7">
 											<input name="phone" id="phone" class="form-control"
 												required="required" />
@@ -195,28 +198,28 @@ $(document).ready(function(){
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
 										<button id="register" name="register" class="btn btn-default"
-											onclick="registerNow()">Register</button>
+											onclick="registerNow()"><spring:message code="button.register" text="default text" /></button>
 									</div>
 								</div>
 							</div>
 							<div id="oneOffMini" class="collapse">
 								<form id="oneOffInfo" class="form-horizontal">
 									<div class="form-group">
-										<label class="control-label col-sm-2">Email: </label>
+										<label class="control-label col-sm-2"><spring:message code="oneOff.email" text="default text" /></label>
 										<div class="col-sm-10">
 											<input type="text" class="form-control" name="oneOffEmail"
 												id="oneOffEmail" required="required" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label col-sm-2">Name: </label>
+										<label class="control-label col-sm-2"><spring:message code="oneOff.name" text="default text" /></label>
 										<div class="col-sm-10">
 											<input type="text" class="form-control" name="oneOffName"
 												id="oneOffName" required="required" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label col-sm-2">Phone: </label>
+										<label class="control-label col-sm-2"><spring:message code="oneOff.phone" text="default text" /></label>
 										<div class="col-sm-10">
 											<input type="text" class="form-control" name="oneOffPhone"
 												id="oneOffPhone" required="required" />
@@ -226,7 +229,7 @@ $(document).ready(function(){
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
 										<button id="oneOff" name="oneOff" class="btn btn-default"
-											onclick="oneOffReserve()">Login</button>
+											onclick="oneOffReserve()"><spring:message code="button.confirm" text="default text" /></button>
 									</div>
 								</div>
 
@@ -234,7 +237,7 @@ $(document).ready(function(){
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
+								data-dismiss="modal"><spring:message code="button.close" text="default text" /></button>
 						</div>
 					</div>
 
@@ -248,13 +251,13 @@ $(document).ready(function(){
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Login</h4>
+							<h4 class="modal-title"><spring:message code="nav.opt8" text="default text" /></h4>
 						</div>
 						<div class="modal-body">
 							<form id="loginForm" class="form-horizontal"
 								action="loginProcess" method="post">
 								<div class="form-group">
-									<label path="username" class="control-label col-sm-2">Username:
+									<label path="username" class="control-label col-sm-2"><spring:message code="login.username" text="default text" />
 									</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" name="username"
@@ -262,7 +265,7 @@ $(document).ready(function(){
 									</div>
 								</div>
 								<div class="form-group">
-									<label path="password" class="control-label col-sm-2">Password:</label>
+									<label path="password" class="control-label col-sm-2"><spring:message code="login.password" text="default text" /></label>
 									<div class="col-sm-10">
 										<input type="password" class="form-control" name="password"
 											id="loginPassword" required="required" />
@@ -272,13 +275,13 @@ $(document).ready(function(){
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
 									<button id="login" name="login" class="btn btn-default"
-										onclick="login()">Login</button>
+										onclick="login()"><spring:message code="button.login" text="default text" /></button>
 								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
+								data-dismiss="modal"><spring:message code="button.close" text="default text" /></button>
 						</div>
 					</div>
 
@@ -289,11 +292,11 @@ $(document).ready(function(){
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Room Type</th>
-						<th>Start Date</th>
-						<th>End Date</th>
-						<th>Location</th>
-						<th>Price (HKD)</th>
+						<th><spring:message code="table.roomType" text="default text" /></th>
+						<th><spring:message code="table.startDate" text="default text" /></th>
+						<th><spring:message code="table.endDate" text="default text" /></th>
+						<th><spring:message code="table.location" text="default text" /></th>
+						<th><spring:message code="table.price" text="default text" /></th>
 					</tr>
 				</thead>
 				<c:forEach items="${sessionScope.orders}" var="order">
@@ -306,19 +309,28 @@ $(document).ready(function(){
 						<td>${order.fromDate}</td>
 						<td>${order.toDate}</td>
 						<td>${order.location}</td>
-						<td>${order.price} (${order.roomCount}${order.roomCount==1 ? ' Room':' Rooms'})</td>
+						<td>${order.price} (${order.roomCount}
+							<c:choose>
+								<c:when test="${order.roomCount}==1">
+									<spring:message code="cart.room" text="default text" />
+								</c:when>
+								<c:otherwise>
+									<spring:message code="cart.rooms" text="default text" />
+								</c:otherwise>
+							</c:choose>					
+						)</td>
 					</tr>
 					<tr>
 						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
-						<td scope="col">Total Cost:</td>
+						<td scope="col"><spring:message code="cart.totalCost" text="default text" /></td>
 						<td>${order.price*order.roomCount}</td>
 					</tr>
 				</c:forEach>
 			</table>
-			<input type="button" class="btn btn-default" value="Checkout"
+			<input type="button" class="btn btn-default" value="<spring:message code="button.checkout" text="default text" />"
 				onclick='checkout()' />
 		</div>
 	</div>

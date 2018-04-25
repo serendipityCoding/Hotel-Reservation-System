@@ -40,6 +40,7 @@ asgp2/springmvc/dao/BookingDao.class
 asgp2/springmvc/controller/BookingRecordController.class
 asgp2/springmvc/dao/StaffDao.class
 asgp2/springmvc/service/BookingService.class
+asgp2/springmvc/interceptor/ExecuteTimeInterceptor.class
 asgp2/springmvc/service/StaffServiceImpl.class
 asgp2/springmvc/model/User.class
 asgp2/springmvc/model/Booking.class

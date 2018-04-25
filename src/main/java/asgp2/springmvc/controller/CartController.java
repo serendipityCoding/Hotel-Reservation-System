@@ -57,14 +57,10 @@ public class CartController {
 		Response res=new Response();
 		if(session.getAttribute("user")!=null){
 			String userID=((User)session.getAttribute("user")).getId();	
-			logger.info(userID);
 			for(Order order: orders){
-				logger.info(order.getPrice());
 				for(int i=0;i<order.getRoomCount();i++){
 					int roomID=roomService.assignRoom(order);
-					logger.info(roomID);
-					int bookingID=bookingService.createBooking(roomID, userID, order);
-					logger.info(bookingID);
+					int bookingID=bookingService.createBooking(roomID, userID, order);					
 				}
 			}
 			session.removeAttribute("orders");
@@ -73,14 +69,11 @@ public class CartController {
 		}
 		else if(session.getAttribute("unregisteredUser")!=null){
 			String userID=((UnregisterUser)session.getAttribute("unregisteredUser")).getId();	
-			logger.info(userID);
 			for(Order order: orders){
 				logger.info(order.getPrice());
 				for(int i=0;i<order.getRoomCount();i++){
 					int roomID=roomService.assignRoom(order);
-					logger.info(roomID);
 					int bookingID=bookingService.createBooking(roomID, userID, order);
-					logger.info(bookingID);
 				}
 			}
 			session.removeAttribute("orders");
@@ -109,8 +102,6 @@ public class CartController {
 		unregisterUserService.createUnregisterUser(user);
 		HttpSession session=request.getSession();
 		session.setAttribute("unregisteredUser", user);
-		logger.debug(user.getEmail());
-		logger.debug(user.getId());
 		Response res=new Response();
 		res.setSuccess(true);
 		res.setMessage("Registered");

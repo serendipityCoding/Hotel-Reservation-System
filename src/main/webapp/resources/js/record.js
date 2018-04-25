@@ -23,7 +23,7 @@ function logout(){
 		success : function(response) {
 			if(response.success==true){
 				alert("You are logged out.");
-				window.location.reload();
+				window.location.href="search";
 			}
 			else{
 				alert("Oops.. something goes wrong");

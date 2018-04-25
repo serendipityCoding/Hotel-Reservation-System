@@ -30,7 +30,7 @@ function checkout() {
 		data : JSON.stringify(checkOutItems),
 		success : function(data) {
 			if(data.success==true){
-				alert("Make reservation successfully!");
+				alert("Make reservation successfully! Total Cost: "+total*0.95+" HKD (5% discount applied)");
 				window.location.reload();
 			}
 			else{

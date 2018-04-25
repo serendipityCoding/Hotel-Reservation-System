@@ -28,6 +28,7 @@
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/controller/RegistrationController.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/model/RoomInfo.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/model/User.java
+/Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/interceptor/ExecuteTimeInterceptor.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/controller/RoomBookingController.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/service/RoomTypeServiceImpl.java
 /Users/lijiamin/Desktop/CS4280MVCProj/asgp2/src/main/java/asgp2/springmvc/controller/CartController.java

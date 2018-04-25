@@ -1,3 +1,4 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -53,77 +54,84 @@ $(document).ready(function(){
 </head>
 <body>
 	<div class="container">
-		<h2>GOGO Pikachu</h2>
-		<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-					<li><a href="#">Our Hotels</a></li>
-					<li><a href="search">Find Rooms</a></li>
-					<li><a href="#">Offers</a></li>
-					<li><a href="#">Dining</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li id="signUpIcon"><a href="register"><span
-							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-					<li id="personalIcon"><a href="record"><span
-							class="glyphicon glyphicon-user"></span> Personal</a></li>
-					<li id="cartIcon"><a href="cart"><span
-									class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-					<li id="loginIcon"><a data-toggle="modal" data-target="#login"><span
-							class="glyphicon glyphicon-log-in"></span> Login </a></li>
-					<li id="logoutIcon"><a href="logout"><span
-							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-				</ul>
-			</div>
-		</div>
-		</nav>
-		<div class="modal fade" id="login" role="dialog">
-			<div class="modal-dialog">
-
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">Login</h4>
+		<div id="contentHeader">
+			<h2><spring:message code="hotel.name" text="default text" /></h2>
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#myNavbar">
+							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
 					</div>
-					<div class="modal-body">
-						<form id="loginForm" class="form-horizontal" action="loginProcess" method="post">
-							<div class="form-group">
-								<label path="username" class="control-label col-sm-2">Username: </label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control"
-										name="username" id="loginUsername" required="required" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label path="password" class="control-label col-sm-2">Password:</label>
-								<div class="col-sm-10">
-									<input type="password" class="form-control"
-										name="password" id="loginPassword" required="required" />
-								</div>
-							</div>
-						</form>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button id="login" name="login" class="btn btn-default" onclick="login()">Login</button>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<ul class="nav navbar-nav">
+							<li><a href="#"><spring:message code="nav.opt1" text="default text" /></a></li>
+							<li class="active"><a href="search"><spring:message code="nav.opt2" text="default text" /></a></li>
+							<li><a href="#"><spring:message code="nav.opt3" text="default text" /></a></li>
+							<li><a href="#"><spring:message code="nav.opt4" text="default text" /></a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li id="signUpIcon"><a href="register"><span
+									class="glyphicon glyphicon-user"></span> <spring:message code="nav.opt5" text="default text" /></a></li>
+							<li id="personalIcon"><a href="record"><span
+									class="glyphicon glyphicon-user"></span> <spring:message code="nav.opt6" text="default text" /></a></li>
+							<li id="cartIcon"><a href="cart"><span
+									class="glyphicon glyphicon-shopping-cart"></span> <spring:message code="nav.opt7" text="default text" /></a></li>
+							<li id="loginIcon"><a data-toggle="modal"
+								data-target="#login"><span
+									class="glyphicon glyphicon-log-in"></span> <spring:message code="nav.opt8" text="default text" /> </a></li>
+							<li id="logoutIcon"><a href="#" onclick="logout()"><span
+									class="glyphicon glyphicon-log-out"></span> <spring:message code="nav.opt9" text="default text" /></a></li>
+						</ul>
 					</div>
 				</div>
+			</nav>
+</div>
+			<div class="modal fade" id="login" role="dialog">
+				<div class="modal-dialog">
 
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title"><spring:message code="nav.opt8" text="default text" /></h4>
+						</div>
+						<div class="modal-body">
+							<form id="loginForm" class="form-horizontal"
+								action="loginProcess" method="post">
+								<div class="form-group">
+									<label path="username" class="control-label col-sm-2"><spring:message code="login.username" text="default text" />
+									</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" name="username"
+											id="loginUsername" required="required" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label path="password" class="control-label col-sm-2"><spring:message code="login.password" text="default text" /></label>
+									<div class="col-sm-10">
+										<input type="password" class="form-control" name="password"
+											id="loginPassword" required="required" />
+									</div>
+								</div>
+							</form>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button id="login" name="login" class="btn btn-default"
+										onclick="login()"><spring:message code="button.login" text="default text" /></button>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"><spring:message code="button.close" text="default text" /></button>
+						</div>
+					</div>
+
+				</div>
 			</div>
-		</div>
 		
 		<div id="detail" class="row">
 			<div class="col-md-6">
@@ -163,39 +171,39 @@ $(document).ready(function(){
 				</div>
 					<table id="roomInfo" class="table table-striped">
 					<tr>
-						<td>Room Type:</td>
+						<td><spring:message code="detail.roomType" text="default text" /></td>
 						<td>${roomDetail.type}</td>
 					</tr>
 					<tr>
-						<td>Size (sqm): </td>
+						<td><spring:message code="details.size" text="default text" /></td>
 						<td>${roomDetail.size}</td>
 					</tr>
 					<tr>
-						<td>Single Bed: </td>
+						<td><spring:message code="details.singleBed" text="default text" /></td>
 						<td>${roomDetail.singleBedNo}</td>
 					</tr>
 					<tr>
-						<td>King Size Bed: </td>
+						<td><spring:message code="details.kingSizeBed" text="default text" /></td>
 						<td>${roomDetail.doubleBedNo}</td>
 					</tr>
 					<tr>
-						<td>Max Guest No:</td>
+						<td><spring:message code="details.maxGuestNo" text="default text" /></td>
 						<td>${roomDetail.guestNo}</td>
 					</tr>
 					<tr>
-						<td>Refrigerator: </td>
+						<td><spring:message code="details.refrigerator" text="default text" /></td>
 						<td>${roomDetail.hasRefrigerator==true ? "Yes" : "No"}</td>
 					</tr>
 					<tr>
-						<td>Living Room: </td>
+						<td><spring:message code="details.livingRoom" text="default text" /> </td>
 						<td>${roomDetail.hasLivingRoom==true ? "Yes" : "No"}</td>
 					</tr>
 					<tr>
-						<td>Free WIFI: </td>
+						<td><spring:message code="details.wifi" text="default text" /></td>
 						<td>${roomDetail.hasWIFI==true ? "Yes" : "No"}</td>
 					</tr>
 					<tr>
-						<td>Parking Lot: </td>
+						<td><spring:message code="details.parkingLot" text="default text" /></td>
 						<td>${roomDetail.hasParkingLot==true ? "Yes" : "No"}</td>
 					</tr>
 				</table>
@@ -207,7 +215,7 @@ $(document).ready(function(){
 					<input type="hidden" value="${roomDetail.type}" id="type" />
 					<input type="hidden" value="${roomDetail.price}" id="price" />
 					<div class="form-group">
-						<label for="fromDate">Start Date: </label>
+						<label for="fromDate"><spring:message code="table.startDate" text="default text" /></label>
 						<div id="datepicker1" class="input-group date"
 					data-date-format="mm-dd-yyyy">
 							<input type="text" value="${startDate}" id="fromDate" name="fromDate" class="form-control"/>
@@ -217,7 +225,7 @@ $(document).ready(function(){
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="toDate">End Date: </label>
+						<label for="toDate"><spring:message code="table.endDate" text="default text" /></label>
 						<div id="datepicker2" class="input-group date"
 					data-date-format="mm-dd-yyyy">
 							<input type="text" value="${endDate}" id="toDate" name="toDate" class="form-control"/>
@@ -227,19 +235,19 @@ $(document).ready(function(){
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="location">End Date: </label>
+						<label for="location"><spring:message code="table.location" text="default text" /></label>
 						<input type="text" value="${location}" id="location" class="form-control" readonly="readonly"/>
 					</div>
 					<div class="form-group">
-						<label for="roomCount">Rooms: </label>
+						<label for="roomCount"><spring:message code="details.roomCount" text="default text" /></label>
 						<select name="roomCount" id="roomCount" class="form-control">
 							<c:forEach var="i" begin="1" end="${maxAvailRoom}">
 								<option value="${i}">${i}</option>
 							</c:forEach>
 						</select> 
-						<span id="helpBlock" class="help-block">Only <span id="availCount">${maxAvailRoom}</span>  Rooms Left</span>
+						<span id="helpBlock" class="help-block"><spring:message code="details.roomLeft" text="default text" /> <span id="availCount">${maxAvailRoom}</span>  <spring:message code="details.roomLeftCount" text="default text" /></span>
 					</div>
-					<input type="button" class="btn btn-default" value="Add to Cart" onclick='addToCart()' />
+					<input type="button" class="btn btn-default" value="<spring:message code="details.addToCart" text="default text" />" onclick='addToCart()' />
 				</form>
 			</div>
 		</div>

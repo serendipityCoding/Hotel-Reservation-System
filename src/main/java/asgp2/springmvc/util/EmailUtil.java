@@ -37,7 +37,8 @@ public class EmailUtil {
 			message.setSubject("Manager Invitation Email: Registration Form");
 			String body="<p>Dear "+staff.getName()+" (EmployeeID: "+staff.getEmployeeId()+"):</p>"
 					+"<p>Please use the following link to register as a hotel manager "
-					+"<a href='"+url+"'>Register Here</a></p>";
+					+"<a href='"+url+"'>Register Here</a></p>"
+					+ "<p>Thanks a lot for your effort</p><p></p><p>Icy LI</p><p>Chief Manager</p>";
 			MimeBodyPart mimeBodyPart=new MimeBodyPart();
 		    mimeBodyPart.setContent(body,"text/html");	      
 			message.setText(body);
@@ -48,5 +49,9 @@ public class EmailUtil {
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public static void sendReservationConfirmationEmail(){
+	
 	}
 }
