@@ -50,9 +50,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<a href="?language=en_HK">English</a> |
-<a href="?language=cn">Chinese</a>
-
+<a href="?language=en_HK">English</a> | <a href="?language=cn">&#20013;&#25991;</a>
 	<div class="container">
 		<div id="contentHeader">
 			<h2><spring:message code="hotel.name" text="default text" /></h2>
@@ -97,7 +95,7 @@ $(document).ready(function(){
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Before checkout...</h4>
+							<h4 class="modal-title"><spring:message code="title.beforeCheckout" text="default text" /></h4>
 						</div>
 						<div class="modal-body">
 							<button type="button" class="btn btn-info" id="identity1"
@@ -296,7 +294,7 @@ $(document).ready(function(){
 						<th><spring:message code="table.startDate" text="default text" /></th>
 						<th><spring:message code="table.endDate" text="default text" /></th>
 						<th><spring:message code="table.location" text="default text" /></th>
-						<th><spring:message code="table.price" text="default text" />)</th>
+						<th><spring:message code="table.price" text="default text" /></th>
 					</tr>
 				</thead>
 				<c:forEach items="${sessionScope.orders}" var="order">
@@ -309,7 +307,16 @@ $(document).ready(function(){
 						<td>${order.fromDate}</td>
 						<td>${order.toDate}</td>
 						<td>${order.location}</td>
-						<td>${order.price} (${order.roomCount}${order.roomCount==1 ? ' Room':' Rooms'})</td>
+						<td>${order.price} (${order.roomCount}
+							<c:choose>
+								<c:when test="${order.roomCount}==1">
+									<spring:message code="cart.room" text="default text" />
+								</c:when>
+								<c:otherwise>
+									<spring:message code="cart.rooms" text="default text" />
+								</c:otherwise>
+							</c:choose>					
+						)</td>
 					</tr>
 					<tr>
 						<td></td>

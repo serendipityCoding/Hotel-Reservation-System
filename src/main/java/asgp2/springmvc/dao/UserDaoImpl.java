@@ -35,11 +35,11 @@ public class UserDaoImpl implements UserDao {
 
 	public void register(User user) {
 
-		String sql = "insert into user values(?,?,?,?,?,?,?,?,?,NULL)";
+		String sql = "insert into user values(?,?,?,?,?,?,?,?,?,?)";
 		
 		jdbcTemplate.update(sql,
 				new Object[] { user.getId(), user.getUsername(), user.getPassword(), user.getEmail(), user.getFirstname(),
-						user.getLastname(), user.getPhone(), user.getAddress(), user.getCreateDate()});
+						user.getLastname(), user.getPhone(), user.getAddress(), user.getCreateDate(),user.getCreateDate()});
 
 	}
 

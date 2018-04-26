@@ -11,4 +11,5 @@ public class DateUtil {
 		String currentDate=dateFormat.format(cal.getTime()).toString();
 		return currentDate;
 	}
+	
 }

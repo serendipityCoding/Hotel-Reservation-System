@@ -45,6 +45,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<a href="?language=en_HK">English</a> | <a href="?language=cn">&#20013;&#25991;</a>
 	<div class="container">
 		<div id="contentHeader">
 			<h2><spring:message code="hotel.name" text="default text" /></h2>
@@ -155,7 +156,7 @@ $(document).ready(function(){
 							<select class="form-control form-control-warning" name="location"
 								id="location" required>
 								<option value=""></option>
-								<option value="NewYork"><spring:message code="options.newYork" text="default text" /></option>
+								<option value="New York"><spring:message code="options.newYork" text="default text" /></option>
 								<option value="Shanghai"><spring:message code="options.shanghai" text="default text" /></option>
 								<option value="Tokyo"><spring:message code="option.tokyo" text="default text" /></option>
 								<option value="London"><spring:message code="options.london" text="default text" /></option>

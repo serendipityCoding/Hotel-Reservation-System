@@ -1,3 +1,4 @@
+asgp2/springmvc/util/PDFUtil.class
 asgp2/springmvc/dao/RoomDao.class
 asgp2/springmvc/model/Staff.class
 asgp2/springmvc/dao/UnregisterUserDaoImpl.class
@@ -15,6 +16,7 @@ asgp2/springmvc/dao/BookingMapper.class
 asgp2/springmvc/dao/RoomTypeDaoImpl.class
 asgp2/springmvc/dao/RoomTypeMapper.class
 asgp2/springmvc/dao/StaffMapper.class
+asgp2/springmvc/util/EmailUtil$2.class
 asgp2/springmvc/dao/BookingDaoImpl.class
 asgp2/springmvc/dao/RoomTypeDao.class
 asgp2/springmvc/service/UserServiceImpl.class
@@ -41,6 +43,7 @@ asgp2/springmvc/controller/BookingRecordController.class
 asgp2/springmvc/dao/StaffDao.class
 asgp2/springmvc/service/BookingService.class
 asgp2/springmvc/interceptor/ExecuteTimeInterceptor.class
+asgp2/springmvc/controller/HomeController.class
 asgp2/springmvc/service/StaffServiceImpl.class
 asgp2/springmvc/model/User.class
 asgp2/springmvc/model/Booking.class

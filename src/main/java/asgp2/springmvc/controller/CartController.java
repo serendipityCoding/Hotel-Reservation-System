@@ -1,5 +1,7 @@
 package asgp2.springmvc.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.lowagie.text.DocumentException;
+
 import org.json.JSONObject;
 
 import asgp2.springmvc.model.User;
@@ -26,6 +31,8 @@ import asgp2.springmvc.service.BookingService;
 import asgp2.springmvc.service.RoomService;
 import asgp2.springmvc.service.UnregisterUserService;
 import asgp2.springmvc.util.DateUtil;
+import asgp2.springmvc.util.EmailUtil;
+import asgp2.springmvc.util.PDFUtil;
 import asgp2.springmvc.util.TokenUtil;
 
 @Controller
@@ -52,18 +59,22 @@ public class CartController {
 	}
 	@RequestMapping(value="/checkout", method=RequestMethod.POST,headers = "Content-Type=application/json")
 	@ResponseBody
-	public Response checkout(HttpServletRequest request, HttpServletResponse response,@RequestBody List<Order> orders){
+	public Response checkout(HttpServletRequest request, HttpServletResponse response,@RequestBody List<Order> orders) throws IOException, DocumentException{
 		HttpSession session=request.getSession();
 		Response res=new Response();
 		if(session.getAttribute("user")!=null){
-			String userID=((User)session.getAttribute("user")).getId();	
+			String userID=((User)session.getAttribute("user")).getId();
+			ArrayList<Integer> bookingIDs=new ArrayList<>();
 			for(Order order: orders){
 				for(int i=0;i<order.getRoomCount();i++){
 					int roomID=roomService.assignRoom(order);
-					int bookingID=bookingService.createBooking(roomID, userID, order);					
+					int bookingID=bookingService.createBooking(roomID, userID, order);			
+					bookingIDs.add(bookingID);
 				}
 			}
 			session.removeAttribute("orders");
+			PDFUtil.generateOrderPDF((User)session.getAttribute("user"), bookingIDs, orders);
+			EmailUtil.sendReservationConfirmationEmail((User)session.getAttribute("user"));
 			res.setSuccess(true);
 			res.setMessage("Assign room successfully");
 		}

@@ -50,9 +50,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<a href="?language=en_HK">English</a> |
-<a href="?language=cn">Chinese</a>
-
+<a href="?language=en_HK">English</a> | <a href="?language=cn">&#20013;&#25991;</a>
 	<div class="container">
 		<div id="contentHeader">
 			<h2><spring:message code="hotel.name" text="default text" /></h2>
